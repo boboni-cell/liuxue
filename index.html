@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>North Light 北向光 — 韩国留学咨询</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 0;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Section Titles ── */
+.section-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber-500); margin-bottom: 12px; }
+.section-title { font-size: 28px; font-weight: 800; color: var(--gray-800); margin-bottom: 8px; letter-spacing: -0.02em; }
+.section-sub { font-size: 16px; color: var(--gray-400); font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 16px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+@media (min-width: 768px) { .section-title { font-size: 36px; } }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh; min-height: 100dvh;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 40%, var(--navy-600) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 120px 24px 80px;
+}
+.hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(232,169,64,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(61,122,204,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 50% 80%, rgba(212,148,43,0.05) 0%, transparent 40%);
+  animation: heroGlow 8s ease-in-out infinite alternate;
+}
+@keyframes heroGlow {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(20px, -20px) scale(1.05); }
+}
+.hero-particles { position: absolute; inset: 0; pointer-events: none; }
+.hero-particle {
+  position: absolute; width: 2px; height: 2px; background: var(--amber-300);
+  border-radius: 50%; opacity: 0;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+@keyframes particleFloat {
+  0%, 100% { opacity: 0; transform: translateY(0) scale(1); }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.2; }
+  100% { opacity: 0; transform: translateY(-100px) scale(0.5); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 700px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border: 1px solid rgba(240,192,96,0.3); border-radius: 100px; font-size: 13px; color: var(--amber-300); margin-bottom: 32px; backdrop-filter: blur(4px); }
+.hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--amber-400); border-radius: 50%; box-shadow: 0 0 8px var(--amber-400); }
+.hero h1 { font-size: 40px; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 16px; letter-spacing: -0.02em; }
+.hero h1 em { font-style: normal; font-weight: 300; font-size: 24px; display: block; color: var(--gray-300); margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+.hero p { font-size: 17px; color: var(--gray-300); line-height: 1.7; margin-bottom: 40px; }
+.hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 16px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 24px rgba(212,148,43,0.3); }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(212,148,43,0.4); }
+.btn-outline { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.25); border-radius: 100px; font-weight: 600; font-size: 16px; text-decoration: none; transition: all var(--transition); }
+.btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+.hero-stats { display: flex; gap: 40px; justify-content: center; margin-top: 64px; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat-num { font-size: 32px; font-weight: 800; color: var(--amber-400); font-family: 'Inter', sans-serif; }
+.hero-stat-label { font-size: 13px; color: var(--gray-400); margin-top: 4px; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: 30px; }
+  .hero h1 em { font-size: 18px; }
+  .hero-stats { gap: 24px; }
+  .hero-stat-num { font-size: 24px; }
+}
+
+/* ── Sections ── */
+.section { padding: 80px 0; }
+.section-alt { background: var(--gray-50); }
+@media (min-width: 768px) { .section { padding: 120px 0; } }
+
+/* ── Image Placeholder ── */
+.img-placeholder {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 200px; position: relative; overflow: hidden;
+}
+.img-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.img-placeholder svg { width: 40px; height: 40px; opacity: 0.5; position: relative; z-index: 1; }
+.img-placeholder span { font-size: 12px; margin-top: 8px; position: relative; z-index: 1; }
+
+/* ── Services ── */
+.services-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 768px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+.service-card {
+  background: var(--white); border-radius: var(--radius-lg); padding: 36px 28px;
+  border: 1px solid var(--gray-200); transition: all var(--transition);
+  position: relative; overflow: hidden;
+}
+.service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); border-color: transparent; }
+.service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--amber-400), var(--blue-400)); opacity: 0; transition: opacity var(--transition); }
+.service-card:hover::after { opacity: 1; }
+.service-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: linear-gradient(135deg, var(--amber-100), rgba(232,169,64,0.15));
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  color: var(--amber-500);
+}
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--gray-800); }
+.service-card p { font-size: 14px; color: var(--gray-500); line-height: 1.7; }
+.service-list { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.service-tag { font-size: 12px; padding: 4px 12px; background: var(--gray-100); border-radius: 100px; color: var(--gray-600); }
+
+/* ── Success Stories ── */
+.stories-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 640px) { .stories-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .stories-grid { grid-template-columns: repeat(3, 1fr); } }
+.story-card {
+  background: var(--white); border-radius: var(--radius-lg); padding: 28px;
+  border: 1px solid var(--gray-200); transition: all var(--transition);
+}
+.story-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.06); }
+.story-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.story-avatar {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--blue-300), var(--blue-500));
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 18px;
+}
+.story-name { font-weight: 600; color: var(--gray-800); font-size: 15px; }
+.story-bg { font-size: 12px; color: var(--gray-400); }
+.story-arrow { display: flex; align-items: center; gap: 10px; margin: 16px 0; font-size: 14px; }
+.story-from { color: var(--gray-500); }
+.story-arrow svg { color: var(--amber-500); flex-shrink: 0; }
+.story-to { color: var(--navy-700); font-weight: 600; }
+.story-quote { font-size: 13px; color: var(--gray-400); font-style: italic; line-height: 1.6; padding-top: 12px; border-top: 1px solid var(--gray-100); }
+.story-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 100px; margin-top: 10px; font-weight: 600; }
+.tag-sky { background: #EEF2FF; color: #4338CA; }
+.tag-top { background: #FEF3C7; color: #B45309; }
+.tag-art { background: #FCE7F3; color: #BE185D; }
+.tag-dual { background: #D1FAE5; color: #047857; }
+.stories-more { text-align: center; margin-top: 40px; }
+
+/* ── Resources ── */
+.resource-tabs { display: flex; gap: 8px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+.resource-tab {
+  padding: 10px 24px; border: 1.5px solid var(--gray-200); border-radius: 100px;
+  font-size: 14px; font-weight: 600; color: var(--gray-500); cursor: pointer;
+  background: var(--white); transition: all var(--transition);
+}
+.resource-tab:hover { border-color: var(--gray-300); color: var(--gray-700); }
+.resource-tab.active { background: var(--navy-700); border-color: var(--navy-700); color: var(--white); }
+.resources-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 768px) { .resources-grid { grid-template-columns: repeat(3, 1fr); } }
+.resource-card {
+  background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid var(--gray-200); transition: all var(--transition); cursor: pointer;
+}
+.resource-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.06); transform: translateY(-2px); }
+.resource-thumb { height: 160px; }
+.resource-body { padding: 20px; }
+.resource-body h4 { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 8px; line-height: 1.4; }
+.resource-body p { font-size: 13px; color: var(--gray-500); line-height: 1.6; margin-bottom: 12px; }
+.resource-meta { font-size: 12px; color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
+
+/* ── About ── */
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+@media (min-width: 768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+.about-text h3 { font-size: 20px; font-weight: 700; color: var(--gray-800); margin-bottom: 12px; }
+.about-text p { font-size: 15px; color: var(--gray-500); line-height: 1.8; margin-bottom: 24px; }
+.about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
+.about-hl { display: flex; gap: 12px; align-items: flex-start; }
+.about-hl-icon { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--amber-100), rgba(232,169,64,0.15)); display: flex; align-items: center; justify-content: center; color: var(--amber-500); flex-shrink: 0; }
+.about-hl h4 { font-size: 14px; font-weight: 700; color: var(--gray-800); }
+.about-hl p { font-size: 12px; color: var(--gray-400); margin: 0; }
+.about-image { min-height: 360px; border-radius: var(--radius-lg); }
+.contact-info { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 32px; }
+@media (min-width: 480px) { .contact-info { grid-template-columns: repeat(4, 1fr); } }
+.contact-item { text-align: center; padding: 20px 12px; background: var(--gray-50); border-radius: var(--radius); }
+.contact-item svg { color: var(--amber-500); margin-bottom: 8px; }
+.contact-item h5 { font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; }
+.contact-item p { font-size: 13px; color: var(--gray-800); font-weight: 500; margin: 0; }
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">✦</div>
+      North Light<span>北向光</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home" data-nav>首页</a></li>
+      <li><a href="#services" data-nav>服务项目</a></li>
+      <li><a href="#stories" data-nav>成功案例</a></li>
+      <li><a href="#resources" data-nav>资讯中心</a></li>
+      <li><a href="#about" data-nav>关于我们</a></li>
+      <li><a href="assessment.html" class="nav-cta">免费评估 →</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero" id="home">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">韩国留学咨询 · Since 2018</div>
+    <h1>
+      <em>North Light</em>
+      让我们成为您留学路上<br>最明亮的指引光束
+    </h1>
+    <p>从择校定位到签证落地，我们用专业和经验为每一位学子照亮通往韩国名校的道路</p>
+    <div class="hero-buttons">
+      <a href="assessment.html" class="btn-primary">免费评估 →</a>
+      <a href="#services" class="btn-outline">了解服务 ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">98%</div><div class="hero-stat-label">签证通过率</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">500+</div><div class="hero-stat-label">成功案例</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">50+</div><div class="hero-stat-label">合作院校</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Services ── -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Our Services</div>
+      <h2 class="section-title">全方位韩国留学服务</h2>
+      <p class="section-sub">Comprehensive Study Abroad Services</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg></div>
+        <h3>留学规划</h3>
+        <p>基于个人背景和职业目标，制定精准的择校和申请策略，最大化录取概率。</p>
+        <div class="service-list">
+          <span class="service-tag">本科申请</span>
+          <span class="service-tag">研究生申请</span>
+          <span class="service-tag">博士申请</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h3>背景提升</h3>
+        <p>科研实习、语言考试、文书精修——全方位提升申请竞争力，让你在众多申请者中脱颖而出。</p>
+        <div class="service-list">
+          <span class="service-tag">科研实习推荐</span>
+          <span class="service-tag">语言考试辅导</span>
+          <span class="service-tag">文书润色</span>
+        </div>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>后续支持</h3>
+        <p>从签证办理到行前准备，从住宿安置到落地接机，我们确保你的每一步都走得踏实。</p>
+        <div class="service-list">
+          <span class="service-tag">签证办理</span>
+          <span class="service-tag">行前指导</span>
+          <span class="service-tag">海外住宿安置</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Success Stories ── -->
+<section class="section section-alt" id="stories">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Success Stories</div>
+      <h2 class="section-title">他们通过我们实现了留学梦想</h2>
+      <p class="section-sub">Real Stories, Real Success</p>
+    </div>
+    <div class="stories-grid" id="storiesGrid"></div>
+    <div class="stories-more reveal">
+      <button class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);" id="loadMoreStories">查看更多案例 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── Resources ── -->
+<section class="section" id="resources">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Resource Center</div>
+      <h2 class="section-title">资讯中心</h2>
+      <p class="section-sub">Stay Informed & Stay Ahead</p>
+    </div>
+    <div class="resource-tabs reveal" id="resourceTabs">
+      <button class="resource-tab active" data-tab="encyclopedia">留学百科</button>
+      <button class="resource-tab" data-tab="guide">申请指南</button>
+      <button class="resource-tab" data-tab="news">最新动态</button>
+    </div>
+    <div class="resources-grid" id="resourcesGrid"></div>
+  </div>
+</section>
+
+<!-- ── About ── -->
+<section class="section section-alt" id="about">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">About Us</div>
+      <h2 class="section-title">关于 North Light 北向光</h2>
+      <p class="section-sub">Who We Are</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h3>因为走过这条路，所以想为你照亮前方</h3>
+        <p>North Light 北向光成立于2018年，核心团队由韩国顶尖大学毕业生和在韩工作多年的教育从业者组成。我们深知留学路上的迷茫与期待，因此用亲身经验和专业视角，为每一位学子提供从择校到入学的全流程陪伴。</p>
+        <div class="about-highlights">
+          <div class="about-hl">
+            <div class="about-hl-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div><h4>专业团队</h4><p>核心顾问均毕业于韩国Top10院校</p></div>
+          </div>
+          <div class="about-hl">
+            <div class="about-hl-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+            <div><h4>全程陪伴</h4><p>从选校到入学一站式无忧服务</p></div>
+          </div>
+          <div class="about-hl">
+            <div class="about-hl-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+            <div><h4>中韩双团队</h4><p>首尔+北京两地协作，信息零时差</p></div>
+          </div>
+          <div class="about-hl">
+            <div class="about-hl-icon"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+            <div><h4>服务承诺</h4><p>未录取全额退款，签约有保障</p></div>
+          </div>
+        </div>
+        <div class="contact-info">
+          <div class="contact-item">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.574 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <h5>微信</h5><p>NorthLight_Korea</p>
+          </div>
+          <div class="contact-item">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <h5>邮箱</h5><p>info@northlight.kr</p>
+          </div>
+          <div class="contact-item">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <h5>地址</h5><p>首尔市麻浦区</p>
+          </div>
+          <div class="contact-item">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <h5>工作时间</h5><p>工作日 9:00-18:00</p>
+          </div>
+        </div>
+      </div>
+      <div class="img-placeholder about-image reveal">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>团队照片</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light 北向光</div>
+        <p class="footer-tagline">让我们成为您留学路上最明亮的指引光束。<br>韩国留学，从这里开始。</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="#home">首页</a></li>
+          <li><a href="#services">服务项目</a></li>
+          <li><a href="#stories">成功案例</a></li>
+          <li><a href="assessment.html">免费评估</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="#">微信：NorthLight_Korea</a></li>
+          <li><a href="#">邮箱：info@northlight.kr</a></li>
+          <li><a href="#">地址：首尔市麻浦区</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 North Light 北向光. All rights reserved.</span>
+      <span>专注韩国留学咨询</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Hero particles ── */
+const particles = document.getElementById('particles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'hero-particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 6 + 's';
+  p.style.animationDuration = (4 + Math.random() * 6) + 's';
+  particles.appendChild(p);
+}
+
+/* ── Stories data ── */
+const STORIES = [
+  { name:'张同学', bg:'GPA 3.2 · TOPIK 4级', from:'国内二本', to:'高丽大学 传媒学硕士', tag:'sky', tagLabel:'SKY录取', quote:'"顾问帮我精准定位了最适合的教授方向，文书修改了五稿才满意，拿到offer的那一刻觉得一切都值了。"' },
+  { name:'李同学', bg:'GPA 3.6 · TOPIK 5级', from:'普通高中', to:'成均馆大学 经营学', tag:'top', tagLabel:'本科直录', quote:'"高中就开始规划了，顾问帮我选了三所学校保底、冲刺搭配，最后拿到最想去的成均馆。"' },
+  { name:'王同学', bg:'GPA 3.0 · 零韩语基础', from:'大专毕业', to:'汉阳大学 语学院+本科', tag:'dual', tagLabel:'双录取', quote:'"以为专科毕业没希望了，顾问说语学院过渡是一条很多人走的路径，现在语学院在读，已经拿到了本科offer。"' },
+  { name:'陈同学', bg:'GPA 3.8 · 雅思7.0', from:'211本科', to:'首尔大学 计算机工学', tag:'sky', tagLabel:'首尔大录取', quote:'"首尔大工科竞争太激烈了，还好顾问推荐的科研项目让我简历加分很多，面试问题也提前准备了。"' },
+  { name:'赵同学', bg:'GPA 3.5 · TOPIK 3级', from:'普通本科', to:'弘益大学 视觉设计', tag:'art', tagLabel:'艺术名校', quote:'"作品集辅导的老师就是弘益毕业的，给了我很多韩国教授偏好的方向建议，太有用了。"' },
+  { name:'刘同学', bg:'GPA 3.1 · TOPIK 4级', from:'二本院校', to:'庆熙大学 酒店管理', tag:'top', tagLabel:'热门专业', quote:'"酒店管理是庆熙的王牌专业，顾问详细分析了课程设置和就业前景，帮我找到了最适合的方向。"' },
+];
+let storiesShown = 3;
+
+function renderStories(count) {
+  const grid = document.getElementById('storiesGrid');
+  grid.innerHTML = STORIES.slice(0, count).map(s => `
+    <div class="story-card reveal">
+      <div class="story-header">
+        <div class="story-avatar">${s.name[0]}</div>
+        <div><div class="story-name">${s.name}</div><div class="story-bg">${s.bg}</div></div>
+      </div>
+      <div class="story-arrow">
+        <span class="story-from">${s.from}</span>
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <span class="story-to">${s.to}</span>
+      </div>
+      <span class="story-tag tag-${s.tag}">${s.tagLabel}</span>
+      <div class="story-quote">${s.quote}</div>
+    </div>
+  `).join('');
+  // Re-observe newly added elements
+  document.querySelectorAll('.stories-grid .reveal').forEach(el => observer.observe(el));
+}
+renderStories(storiesShown);
+
+document.getElementById('loadMoreStories').addEventListener('click', () => {
+  storiesShown = storiesShown >= STORIES.length ? 3 : STORIES.length;
+  renderStories(storiesShown);
+  const btn = document.getElementById('loadMoreStories');
+  btn.textContent = storiesShown >= STORIES.length ? '收起案例 ↑' : '查看更多案例 →';
+  setTimeout(() => window.scrollBy({ top: 200, behavior: 'smooth' }), 100);
+});
+
+/* ── Resources tabs ── */
+const RESOURCES = {
+  encyclopedia: [
+    { title:'韩国大学排名体系全解析', desc:'SKY、KAIST、浦项工大……带你了解韩国高等教育体系的分类与排名逻辑。', date:'2026-07-20' },
+    { title:'语学院 vs 直接申请：哪种路径更适合你？', desc:'语学院是过渡还是绕路？分析两种路径的优劣势和适合人群。', date:'2026-07-15' },
+    { title:'韩国留学费用全盘点', desc:'学费、生活费、奖学金——首尔vs地方城市的真实花费对比。', date:'2026-07-08' },
+  ],
+  guide: [
+    { title:'2027年3月入学申请时间线', desc:'从选校到递交材料，完整的时间规划指南，建议提前12个月开始准备。', date:'2026-07-18' },
+    { title:'个人陈述写作指南：如何打动韩国教授', desc:'韩国大学PS的写作特点和中英美体系的不同之处，附范例分析。', date:'2026-07-12' },
+    { title:'TOPIK备考策略：3个月从零到4级', desc:'过来人的高效备考经验，听说读写各板块突破方法。', date:'2026-07-05' },
+  ],
+  news: [
+    { title:'2026年韩国政府新增GKS奖学金名额', desc:'韩国教育部最新公告，全球韩国政府奖学金名额增加15%。', date:'2026-07-22' },
+    { title:'多所韩国大学放宽留学生语言要求', desc:'为吸引更多国际学生，多所大学调整TOPIK入学门槛。', date:'2026-07-16' },
+    { title:'韩国留学生就业签证政策更新', desc:'毕业后求职签证期限延长至2年，特定专业可申请更长期限。', date:'2026-07-10' },
+  ],
+};
+let activeTab = 'encyclopedia';
+
+function renderResources(tab) {
+  const grid = document.getElementById('resourcesGrid');
+  grid.innerHTML = RESOURCES[tab].map(r => `
+    <div class="resource-card reveal">
+      <div class="img-placeholder resource-thumb">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7h10M7 12h10M7 17h6"/></svg>
+        <span>文章配图</span>
+      </div>
+      <div class="resource-body">
+        <h4>${r.title}</h4>
+        <p>${r.desc}</p>
+        <div class="resource-meta">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          ${r.date}
+        </div>
+      </div>
+    </div>
+  `).join('');
+  document.querySelectorAll('#resourcesGrid .reveal').forEach(el => observer.observe(el));
+}
+renderResources(activeTab);
+
+document.getElementById('resourceTabs').addEventListener('click', (e) => {
+  if (!e.target.classList.contains('resource-tab')) return;
+  document.querySelectorAll('.resource-tab').forEach(t => t.classList.remove('active'));
+  e.target.classList.add('active');
+  activeTab = e.target.dataset.tab;
+  renderResources(activeTab);
+});
+</script>
+</body>
+</html>
