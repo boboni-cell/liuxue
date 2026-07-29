@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+.resource-expand { font-size: 12px; color: var(--amber-500); font-weight: 600; flex-shrink: 0; transition: transform var(--transition); display: flex; align-items: center; gap: 4px; }
+.resource-expand.open { transform: rotate(180deg); }
+.resource-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.resource-card-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, padding 0.5s ease, opacity 0.3s ease; opacity: 0; padding: 0 20px; }
+.resource-card-body.open { max-height: 2000px; opacity: 1; padding: 0 20px 24px; }
+.resource-card-body p { font-size: 14px; color: var(--gray-600); line-height: 1.85; }
+
 :root {
   --navy-900: #0A1628;
   --navy-800: #0F1F3A;
@@ -156,7 +163,8 @@ body {
   border: 1px solid var(--gray-200); transition: all var(--transition); cursor: pointer;
   text-decoration: none; color: inherit; display: block;
 }
-.resource-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.08); transform: translateY(-4px); border-color: transparent; }
+.resource-card:hover { box-shadow: 0 12px 36px rgba(0,0,0,0.08); border-color: transparent; }
+.resource-card.expanded { border-color: var(--blue-300); box-shadow: 0 8px 32px rgba(43,94,167,0.1); }
 .resource-thumb {
   height: 200px;
   background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-600) 40%, var(--blue-500) 100%);
@@ -332,34 +340,22 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 /* ── Resources Data ── */
 const RESOURCES = {
   encyclopedia: [
-    { title:'韩国大学排名体系全解析', desc:'SKY、KAIST、浦项工大……深入了解韩国高等教育体系的分类与排名逻辑，帮你精准定位目标院校。', date:'2026-07-20', readTime:'8' },
-    { title:'语学院 vs 直接申请：哪种路径更适合你？', desc:'语学院是过渡还是绕路？从语言基础、时间成本和经济角度分析两种路径的优劣势与适合人群。', date:'2026-07-15', readTime:'6' },
-    { title:'韩国留学费用全盘点：首尔vs地方', desc:'学费、生活费、住宿、奖学金——首尔和地方城市的真实花费对比，帮你做好留学预算规划。', date:'2026-07-08', readTime:'7' },
-    { title:'韩国大学奖学金申请完全指南', desc:'校内奖学金、政府奖学金、企业奖学金——各类奖学金的申请条件、金额与时间节点全解析。', date:'2026-06-28', readTime:'10' },
-    { title:'TOPIK考试全介绍：等级、时间、备考资源', desc:'韩国语能力考试的等级划分、考试时间安排、官方教材与实用备考资源一站式汇总。', date:'2026-06-20', readTime:'5' },
-    { title:'韩国留学生活费真实开销记录', desc:'在韩留学生的月度开销明细：饮食、交通、通讯、保险、娱乐——真实的留学生活成本参考。', date:'2026-06-12', readTime:'6' },
-    { title:'韩国大学专业选择指南：热门与潜力学科', desc:'从就业前景、学科排名到个人兴趣，为你梳理韩国大学的热门专业与未来潜力学科方向。', date:'2026-06-05', readTime:'7' },
-    { title:'韩国大学宿舍 vs 校外租房：住宿全攻略', desc:'大学宿舍申请难度、校外全税与月税的区别、各地区租金水平——留学生住宿选择指南。', date:'2026-05-28', readTime:'5' },
+    { title:'韩国教育制度全解析：从语学院到博士你需要知道的一切', desc:'韩国高等教育分为综合性大学、专业性大学和职业院校三大类，2025年在韩中国留学生突破10万。', date:'2026-07-20', readTime:'10', content:'韩国高等教育体系完善，涵盖从本科到博士的完整学历教育，还有语言研修课程和暑期学校项目。院校分为综合性大学、专业性大学和职业院校三类。综合性大学学术研究实力雄厚，其中首尔大学、高丽大学、延世大学（合称"SKY"）享誉全球。<br><br>入学时间方面，韩国大学每年3月和9月两次开学，9月是主要入学季。如果选择先读语学院，语学院全年多次招生，录取周期较短，通常提前2-3个月准备即可。<br><br>语言要求分为韩语授课和英语授课两条路径。本科阶段国立大学和地方私立通常要求TOPIK 3级，首尔圈主要大学及SKY院校建议TOPIK 4-5级。硕博阶段地方院校一般要求TOPIK 4级，高丽、延世等大学文科建议5-6级。' },
+    { title:'2026年韩国大学QS排名速览：SKY三校全部进入全球前70', desc:'延世大学首次冲进全球前50，釜山国立大学飙升51名，韩国共42所大学上榜。', date:'2026-07-15', readTime:'8', content:'2026QS世界大学排名中，韩国共有42所大学入选。首尔大学稳居韩国第一、全球第38位。延世大学表现亮眼，从第56位升至第50位，首次跻身全球前50。高丽大学排名第61位，上升6位。<br><br>浦项科技大学排名第102位，理工科优势显著。成均馆大学第126位，依托三星集团资源支持，科研实力雄厚。釜山大学排名上升50多位进入全球前500。<br><br>值得关注的是，韩国政府推出"Study Korea 300K"计划，目标2027年吸引30万国际学生，2026年新增GKS数字人才专项奖学金，TOPIK 5级可获70%学费减免。' },
+    { title:'韩国留学费用全攻略：学费、生活费、打工收入一文搞懂', desc:'韩元汇率处于近年低位，2026年最低时薪约54元人民币，留学性价比提升。', date:'2026-07-10', readTime:'8', content:'存款证明金额通常在7-15万人民币区间，冻结期限3-12个月不等。韩元汇率处于近年低位，学费和生活费的实际支出较往年有所下降。<br><br>学费方面，人文社科约4.2万人民币/年，理工科约5.8万人民币/年。地方国立大学学费更低，受政府高额补贴。住宿方面，学校宿舍每月约1000-2000人民币。<br><br>打工政策方面，2026年最低时薪约54元人民币。本科生每周可工作25小时，研究生35小时，假期不限。成绩优异者还可额外申请延长打工时间。' },
+    { title:'2026年韩国留学签证政策变化：你必须知道的3件事', desc:'签证审核从严、广域型签证试点、毕业后就业签证延长，全面解读最新变化。', date:'2026-07-05', readTime:'7', content:'第一，签证审核全面收紧，核心围绕"严查非法滞留"展开，无韩语成绩、资金证明不达标将面临更高拒签风险。<br><br>第二，"广域型签证"试点政策打破全国统一标准，允许地方政府根据产业需求调整签证条件。釜山、光州等试点地区可能下调经济能力门槛，申请半导体、AI等紧缺专业的学生每周打工时长可从20小时增至30小时。<br><br>第三，毕业后D-10求职签证延长至3年，理工科硕博可申请5年"未来人才签证"。韩国政府还推出"K-STAR签证"，STEM专业硕博毕业可直接获得永久居留权。' },
   ],
   guide: [
-    { title:'2027年3月入学申请时间线完整规划', desc:'从选校定位到递交材料，完整的12个月时间规划指南，建议提前一年开始准备。', date:'2026-07-18', readTime:'8' },
-    { title:'个人陈述写作指南：如何打动韩国教授', desc:'韩国大学PS的写作特点与中英美体系的不同，附实际范例分析，帮你写出有竞争力的个人陈述。', date:'2026-07-12', readTime:'7' },
-    { title:'TOPIK备考策略：3个月从零到4级', desc:'过来人的高效备考经验分享，听说读写各板块突破方法，每日学习计划模板可参考。', date:'2026-07-05', readTime:'6' },
-    { title:'韩国大学面试常见问题与回答技巧', desc:'整理了近三年各校面试高频问题，分析教授提问背后的考察意图，附回答框架与注意事项。', date:'2026-06-25', readTime:'5' },
-    { title:'推荐信准备攻略：找谁写、怎么写', desc:'推荐人的选择策略、推荐信的核心要素、如何与推荐人有效沟通——让推荐信成为加分项。', date:'2026-06-18', readTime:'5' },
-    { title:'韩国留学签证申请流程详解', desc:'D-2/D-4签证的区别、申请材料清单、办理时间线与常见拒签原因分析，帮你顺利过签。', date:'2026-06-10', readTime:'6' },
-    { title:'申请材料清单核对：本科 vs 研究生', desc:'本科与研究生申请所需材料的完整对比清单，公证认证要求、翻译规范与递交截止日期。', date:'2026-06-02', readTime:'6' },
-    { title:'套磁邮件写作指南：联系教授的正确方式', desc:'如何找到匹配的教授、邮件标题与正文结构、跟进时机——提高教授回复率的实用技巧。', date:'2026-05-20', readTime:'7' },
+    { title:'韩国留学文书写作指南：自我介绍书和学习计划书怎么写', desc:'文书是录取的重要评价标准，切忌套模板，教授一眼就能看出是否用心。', date:'2026-07-18', readTime:'9', content:'自我介绍书需要包含家庭成长背景、个人性格特征和学习经历。重点是阐述成长背景时暗示家庭经济条件良好，突出家教和个人品行，然后写学业成就和参与活动的经历。<br><br>学习计划书要重点介绍申请这所学校和专业的原因，以及入学后的学习计划和毕业后的发展规划。一定要提前了解学校和专业，体现专业度，不能假大空。<br><br>特别注意：每个学校有自己的文书格式和字数要求，必须针对不同学校和专业做内容调整。韩语水平不高的同学，文书可以请老师帮忙修改，但要在文中说明，教授反而会觉得你诚恳。' },
+    { title:'韩国留学面试常见问题+回答思路全整理', desc:'面试通常在提交材料后1-2个月进行，准备好这些问题稳拿offer。', date:'2026-07-12', readTime:'7', content:'面试核心问题一："为什么选择我们学校和这个专业？"回答框架：说出1-2个学校的具体亮点（课程设置、教授研究方向、实验室），然后对应自己的经历和技能，最后说明短期学习目标和长期职业规划。<br><br>面试核心问题二："为什么选择韩国留学？"要结合个人经历说出具体原因，避免泛泛而谈"喜欢韩国文化"。<br><br>面试核心问题三："毕业后有什么打算？"建议展示清晰的职业规划，可以提到想在韩国积累工作经验后回国发展，体现务实态度。<br><br>重要提醒：面试前一定要熟读自己提交的文书内容，教授会根据文书提问。' },
+    { title:'2026韩国留学申请时间线：本科和研究生全规划', desc:'韩国分3月和9月入学，材料准备通常要提前6-9个月，错过一步真的再等一年。', date:'2026-07-08', readTime:'8', content:'本科3月入学时间线：2025年7-8月确定目标院校（建议选3-5所分冲刺和保底），开始准备TOPIK考试。9-10月参加TOPIK考试并准备成绩单、学历认证等材料。11-12月各大学网申开放，提交材料。2026年1-2月部分专业面试，等待录取结果。2-3月拿到offer后办签证。<br><br>研究生9月入学时间线：2025年12月-2026年2月套磁联系目标导师。1-2月撰写文书材料。3-4月网申提交。7-8月查询录取、办理签证。<br><br>关键提醒：学历认证需要1-2个月，一定要提前准备。艺术生作品集建议预留半年以上准备时间。' },
+    { title:'韩国留学热门专业选择：2026年六大赛道全解析', desc:'半导体、AI、K-pop传媒、经营学……2026年韩国留学专业选择呈现四大新趋势。', date:'2026-07-01', readTime:'9', content:'2026年韩国留学专业选择呈现"硬核科技优先、交叉学科崛起、文化产业升级、地方特色突围"四大趋势，打破过去"商科传媒一家独大"的格局。<br><br>半导体和AI方向：成均馆大学与三星签订"入学即就业"协议，智能软件系学生毕业后直接入职。政府设立"育成型专业技术学科"，免除资金证明、放宽打工限制。<br><br>文化传媒方向：中央大学艺术表演专业与韩国娱乐产业紧密结合，弘益大学设计专业亚洲排名靠前。<br><br>经营学方向：高丽大学经营学院获得AACSB、EQUIS、AMBA三大国际认证，全球仅1%商学院获此殊荣。<br><br>建议选专业时结合自身兴趣和职业规划，优先选择有校企合作、享受政策倾斜的专业。' },
   ],
   news: [
-    { title:'2026年韩国政府新增GKS奖学金名额', desc:'韩国教育部最新公告，全球韩国政府奖学金（GKS）名额增加15%，申请截止日期即将公布。', date:'2026-07-22', readTime:'3' },
-    { title:'多所韩国大学放宽留学生语言要求', desc:'为吸引更多国际学生，多所韩国大学宣布调整TOPIK入学门槛，部分专业接受英语成绩替代。', date:'2026-07-16', readTime:'4' },
-    { title:'韩国留学生就业签证政策更新', desc:'毕业后求职签证（D-10）期限延长至2年，理工科及特定专业毕业生可申请更长期限签证。', date:'2026-07-10', readTime:'3' },
-    { title:'2026 QS韩国大学排名变化解读', desc:'最新QS亚洲大学排名出炉，韩国多所高校排名上升，SKY院校保持领先地位，新兴院校表现亮眼。', date:'2026-07-02', readTime:'5' },
-    { title:'韩国教育部发布留学生支援新政策', desc:'涵盖学业辅导、心理咨询、就业支持的全方位留学生关怀体系，2026年秋季学期起实施。', date:'2026-06-22', readTime:'4' },
-    { title:'中韩航班增加，留学生出行更便利', desc:'多家航空公司宣布增加中韩航线班次，机票价格有望回落，留学生往返更加便捷。', date:'2026-06-15', readTime:'3' },
-    { title:'韩国大学秋季入学线上说明会汇总', desc:'多所韩国大学即将举办线上国际学生招生说明会，我们整理了时间表供大家参考。', date:'2026-06-08', readTime:'3' },
-    { title:'2026韩国最低时薪上调对留学生兼职的影响', desc:'韩国最低时薪再次上调，留学生合法兼职收入增加，但需注意工作时长限制规定。', date:'2026-05-25', readTime:'4' },
+    { title:'重磅！韩国推出"K-STAR签证"，STEM硕博毕业直获永居', desc:'韩国政府最新签证政策，STEM专业硕博毕业生可直接获得永久居留权。', date:'2026-07-25', readTime:'5', content:'韩国政府2026年推出"K-STAR签证"新政策，STEM专业（科学、技术、工程、数学）的硕士和博士毕业生可直接获得永久居留权，这是韩国留学史上最重大的就业政策利好之一。<br><br>同时，GKS奖学金向半导体、AI等硬核专业倾斜70%名额。政府还设立了"育成型专业技术学科"，符合条件的留学生可免除资金证明、享受更宽松的打工限制。<br><br>这一系列政策背后是韩国面临的人才缺口——三星、SK海力士、LG等企业对半导体和AI领域人才的需求持续增长，毕业生平均起薪约1.2万人民币/月。' },
+    { title:'广域型签证试点扩大：釜山、光州等6地留学生迎来新福利', desc:'地方院校学费更低、打工时长更多、住宿有补贴，性价比留学新选择。', date:'2026-07-20', readTime:'5', content:'韩国法务部"广域型签证"试点政策正在扩大，目前已确定釜山、全北等6个试点地区。试点地区的留学生将享受多项福利：经济能力门槛降低，地方院校要求从1600万韩元（约8.4万人民币）可能进一步下调。<br><br>申请半导体、AI等政府指定紧缺专业的学生，每周打工时长可从20小时增至30小时。地方院校如釜山大学、全北大学还将提供更多住宿补贴和产学合作机会。<br><br>对于预算有限的同学来说，地方国立大学是极佳选择：学费低、奖学金丰厚、教学质量有保障，部分专业实力不输首尔名校。' },
+    { title:'2026年中韩航班加密至每周500班，留学出行更便利', desc:'航班增加、韩元汇率低位运行，2026年韩国留学性价比达到近年最高。', date:'2026-07-15', readTime:'4', content:'2026年中韩航班进一步加密至每周500班，覆盖北京、上海、广州、成都、青岛等多个城市直飞首尔、釜山等主要城市，留学生往返更加便利。<br><br>配合韩元汇率持续在近年低位运行，留学总费用实际下降。以首尔地区为例，一年学费加生活费约合人民币12-18万，低于欧美留学费用的一半。<br><br>此外，韩国各大学正在加强国际学生服务，提供从接机、住宿到心理咨询、跨文化适应的全流程协助。多语种生活指南、本地结对项目等服务帮助留学生更快融入新环境。' },
+    { title:'三星、SK海力士扩大留学生招聘，毕业即就业不是梦', desc:'韩国头部企业增加留学生专项招聘名额，半导体和AI方向最为抢手。', date:'2026-07-10', readTime:'5', content:'三星、LG、SK海力士等韩国头部企业2026年继续扩大留学生招聘名额，尤其在半导体、AI、数字媒体等领域。成均馆大学与三星合作的"入学即就业"协议最具代表性——智能软件系学生毕业后可直接入职三星半导体。<br><br>毕业后可申请E-7签证从事专业人才工作，地方政府还会根据产业需求放宽学历和工作经历要求。留学生毕业后平均起薪约1.2万人民币/月，半导体相关岗位更高。<br><br>建议有就业意向的同学在校期间积极参与企业实习和产学合作项目，提前积累行业经验。2026年学校与企业合作将加深，实习与兼职岗位更加多元。' },
   ],
 };
 
@@ -382,33 +378,60 @@ function renderResources(tab) {
   }
 
   grid.innerHTML = articles.map((r, i) => `
-    <a href="#" class="resource-card reveal ${delayClasses[i % delayClasses.length]}">
+    <div class="resource-card reveal ${delayClasses[i % delayClasses.length]}" data-article-id="${tab}-${i}">
       <div class="resource-thumb">
         ${IMAGE_ICON}
         <span class="thumb-text">封面图片</span>
       </div>
       <div class="resource-body">
-        <h4>${r.title}</h4>
-        <p class="resource-desc">${r.desc}</p>
-        <div class="resource-meta">
-          <span class="resource-meta-item">
-            ${CALENDAR_ICON}
-            ${r.date}
-          </span>
-          <span class="resource-meta-item">
-            ${CLOCK_ICON}
-            阅读 ${r.readTime} 分钟
+        <div class="resource-card-header" data-toggle="${tab}-${i}">
+          <div style="flex:1;min-width:0;">
+            <h4>${r.title}</h4>
+            <p class="resource-desc">${r.desc}</p>
+            <div class="resource-meta">
+              <span class="resource-meta-item">${CALENDAR_ICON}${r.date}</span>
+              <span class="resource-meta-item">${CLOCK_ICON}阅读 ${r.readTime} 分钟</span>
+            </div>
+          </div>
+          <span class="resource-expand" data-expand-icon="${tab}-${i}">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            展开
           </span>
         </div>
       </div>
-    </a>
+      <div class="resource-card-body" data-body="${tab}-${i}">
+        <p>${r.content}</p>
+      </div>
+    </div>
   `).join('');
 
-  document.getElementById('resourcesCount').innerHTML = `共 ${articles.length} 篇文章`;
+  document.getElementById('resourcesCount').innerHTML = `共 ${articles.length} 篇文章 · 点击标题展开阅读全文`;
 
   /* Re-observe newly added reveal elements */
   document.querySelectorAll('#resourcesGrid .reveal').forEach(el => observer.observe(el));
 }
+
+/* ── Expand/Collapse handler ── */
+document.getElementById('resourcesGrid').addEventListener('click', (e) => {
+  const header = e.target.closest('[data-toggle]');
+  if (!header) return;
+  const id = header.dataset.toggle;
+  const card = header.closest('.resource-card');
+  const body = document.querySelector(`[data-body="${id}"]`);
+  const icon = document.querySelector(`[data-expand-icon="${id}"]`);
+  if (!body) return;
+
+  const isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.classList.remove('open');
+    card.classList.remove('expanded');
+    if (icon) icon.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>展开';
+  } else {
+    body.classList.add('open');
+    card.classList.add('expanded');
+    if (icon) icon.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>收起';
+  }
+});
 
 /* ── Initial render ── */
 renderResources(activeTab);
