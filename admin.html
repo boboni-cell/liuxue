@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>留学咨询后台管理系统</title>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['"Noto Sans SC"','-apple-system','BlinkMacSystemFont','"Segoe UI"','sans-serif'] },
+      }
+    }
+  }
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F1F5F9; color: #1E293B; -webkit-font-smoothing: antialiased; }
+  #root { min-height: 100vh; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+  /* Animations */
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes slideInLeft { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes slideInRight { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .animate-fadeIn { animation: fadeIn 0.4s ease; }
+  .animate-slideLeft { animation: slideInLeft 0.3s ease; }
+  .animate-slideRight { animation: slideInRight 0.3s ease; }
+  .animate-scaleIn { animation: scaleIn 0.25s ease; }
+
+  /* Row hover */
+  .customer-row { transition: background 0.15s ease; }
+  .customer-row:hover { background: #F8FAFC; }
+
+  /* Table wrapper for mobile scroll */
+  .table-wrapper { -webkit-overflow-scrolling: touch; }
+
+  /* Status badge colors */
+  .badge-new { background: #DBEAFE; color: #1D4ED8; }
+  .badge-contacted { background: #FEF3C7; color: #B45309; }
+  .badge-following { background: #E0E7FF; color: #4338CA; }
+  .badge-signed { background: #D1FAE5; color: #047857; }
+  .badge-dropped { background: #F1F5F9; color: #64748B; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useCallback, useMemo, useRef, useEffect } = React;
+
+/* ──────────────────────────── CONSTANTS ──────────────────────────── */
+const PASSWORD = 'admin2026';
+const STATUS_MAP = {
+  'new':        { label: '新线索',   cls: 'badge-new' },
+  'contacted':  { label: '已联系',   cls: 'badge-contacted' },
+  'following':  { label: '跟进中',   cls: 'badge-following' },
+  'signed':     { label: '已签约',   cls: 'badge-signed' },
+  'dropped':    { label: '已放弃',   cls: 'badge-dropped' },
+};
+const STATUS_OPTIONS = Object.entries(STATUS_MAP).map(([k,v]) => ({ value: k, label: v.label }));
+
+/* ──────────────────────────── MOCK DATA ──────────────────────────── */
+function daysAgo(n) {
+  const d = new Date(); d.setDate(d.getDate() - n);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+const MOCK_CUSTOMERS = [
+  { id:1,  name:'张明宇',   wechat:'zhangmingyu99',     phone:'13812345601', education:'本科在读',   targetDegree:'研究生',  koreanLevel:'TOPIK 3-4级', englishLevel:'雅思6.0-6.5', targetSchools:['SKY','首尔名校'],  enrollmentTime:'2026年', concerns:['选校困难','文书问题'],  submitTime:daysAgo(0),  status:'new',        notes:[{text:'从小红书广告进入，对SKY非常感兴趣',time:daysAgo(0)}] },
+  { id:2,  name:'李雨桐',   wechat:'liyutong_kk',       phone:'13912345602', education:'高中毕业',   targetDegree:'本科',    koreanLevel:'零基础',     englishLevel:'无成绩',       targetSchools:['不确定'],          enrollmentTime:'2027年', concerns:['韩语不足','预算有限'],  submitTime:daysAgo(1),  status:'contacted',   notes:[{text:'已添加微信，家长需要先了解费用',time:daysAgo(1)},{text:'家长对首尔地区生活成本有顾虑，已发资料',time:daysAgo(0.5)}] },
+  { id:3,  name:'王浩然',   wechat:'wanghaoran123',     phone:'13712345603', education:'本科毕业',   targetDegree:'研究生',  koreanLevel:'TOPIK 5-6级', englishLevel:'雅思7.0+',   targetSchools:['SKY'],              enrollmentTime:'2025年', concerns:['选校困难'],              submitTime:daysAgo(2),  status:'following',   notes:[{text:'条件优秀，建议冲首尔大',time:daysAgo(2)},{text:'已发SKY各校传媒专业对比资料',time:daysAgo(1)}] },
+  { id:4,  name:'陈思琪',   wechat:'chensiqi77',        phone:'13612345604', education:'研究生在读', targetDegree:'博士',    koreanLevel:'TOPIK 3-4级', englishLevel:'雅思5.5以下',  targetSchools:['地方国立'],          enrollmentTime:'还没确定', concerns:['文书问题','签证问题'],  submitTime:daysAgo(3),  status:'signed',      notes:[{text:'已签约全流程服务',time:daysAgo(2)},{text:'首期材料已提交',time:daysAgo(1)}] },
+  { id:5,  name:'赵文博',   wechat:'zhaowenbo',         phone:'',             education:'高中在读',   targetDegree:'语学院',  koreanLevel:'零基础',     englishLevel:'无成绩',       targetSchools:['不确定'],          enrollmentTime:'还没确定', concerns:['韩语不足','预算有限','签证问题'], submitTime:daysAgo(5), status:'dropped',     notes:[{text:'家长不同意出国，暂时放弃',time:daysAgo(4)}] },
+  { id:6,  name:'刘梓涵',   wechat:'liuzihan0315',      phone:'13512345606', education:'本科在读',   targetDegree:'本科',    koreanLevel:'TOPIK 1-2级', englishLevel:'无成绩',       targetSchools:['艺术类'],            enrollmentTime:'2026年', concerns:['文书问题','选校困难'],    submitTime:daysAgo(6),  status:'following',   notes:[{text:'目标是弘益大学视觉设计',time:daysAgo(6)},{text:'需准备作品集，已推荐作品集辅导',time:daysAgo(3)}] },
+  { id:7,  name:'周晓萌',   wechat:'zxm_dream',         phone:'13412345607', education:'本科毕业',   targetDegree:'研究生',  koreanLevel:'TOPIK 5-6级', englishLevel:'雅思7.0+',   targetSchools:['SKY','首尔名校'],  enrollmentTime:'2025年', concerns:['选校困难'],              submitTime:daysAgo(8),  status:'signed',      notes:[{text:'已签约VIP服务',time:daysAgo(7)},{text:'延世大学面试辅导已完成',time:daysAgo(2)},{text:'等3月批次结果',time:daysAgo(0.5)}] },
+  { id:8,  name:'吴俊杰',   wechat:'wujunjie001',       phone:'13312345608', education:'研究生毕业', targetDegree:'博士',    koreanLevel:'TOPIK 3-4级', englishLevel:'雅思6.0-6.5', targetSchools:['首尔名校','地方国立'], enrollmentTime:'2027年', concerns:['预算有限'],              submitTime:daysAgo(10), status:'contacted',   notes:[{text:'对成均馆大学工科博士感兴趣',time:daysAgo(9)}] },
+];
+
+/* ──────────────────────────── ICONS ──────────────────────────── */
+const Icon = {
+  Dashboard:  () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>,
+  Users:       () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>,
+  Logout:      () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>,
+  Search:      () => <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>,
+  ChevronDown: () => <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>,
+  ChevronUp:   () => <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>,
+  Plus:        () => <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>,
+  Clock:       () => <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+  Check:       () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>,
+  Alert:       () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>,
+  Menu:        () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>,
+  X:           () => <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>,
+  Eye:         () => <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>,
+};
+
+/* ──────────────────────────── LOGIN PAGE ──────────────────────────── */
+function LoginPage({ onLogin }) {
+  const [pwd, setPwd] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!pwd.trim()) { setError('请输入密码'); return; }
+    setLoading(true);
+    // Simulate network delay
+    setTimeout(() => {
+      if (pwd === PASSWORD) {
+        onLogin();
+      } else {
+        setError('密码错误，请重试');
+        setPwd('');
+        setLoading(false);
+      }
+    }, 400);
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-slate-100 p-4">
+      <div className="w-full max-w-sm animate-scaleIn">
+        {/* Logo area */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-indigo-600 rounded-2xl mb-4 shadow-lg shadow-indigo-600/20">
+            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+            </svg>
+          </div>
+          <h1 className="text-xl font-bold text-slate-800">留学咨询管理系统</h1>
+          <p className="text-sm text-slate-400 mt-1">韩国留学 · 客户管理后台</p>
+        </div>
+
+        {/* Login card */}
+        <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+          <label className="block text-sm font-medium text-slate-700 mb-2">管理员密码</label>
+          <input
+            type="password"
+            className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all duration-200 focus:ring-2 focus:ring-offset-0 ${error ? 'border-red-300 focus:ring-red-200 bg-red-50' : 'border-slate-200 focus:ring-indigo-200 focus:border-indigo-400'}`}
+            placeholder="请输入管理员密码"
+            value={pwd}
+            onChange={e => { setPwd(e.target.value); setError(''); }}
+            autoFocus
+          />
+          {error && <p className="text-red-500 text-xs mt-2 flex items-center gap-1"><Icon.Alert />{error}</p>}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full mt-4 py-3 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-medium rounded-xl text-sm transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <><svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>验证中...</>
+            ) : '登录后台'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────── STAT CARD ──────────────────────────── */
+function StatCard({ title, value, icon, color }) {
+  const colorMap = {
+    blue:   'bg-blue-50 text-blue-600',
+    green:  'bg-emerald-50 text-emerald-600',
+    amber:  'bg-amber-50 text-amber-600',
+    indigo: 'bg-indigo-50 text-indigo-600',
+  };
+  return (
+    <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5 flex items-center gap-4 animate-fadeIn">
+      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center flex-shrink-0 ${colorMap[color] || colorMap.blue}`}>
+        {icon}
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs sm:text-sm text-slate-400 font-medium truncate">{title}</p>
+        <p className="text-xl sm:text-2xl font-bold text-slate-800">{value}</p>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────── DASHBOARD ──────────────────────────── */
+function Dashboard({ customers }) {
+  const stats = useMemo(() => {
+    const today = new Date().toISOString().slice(0, 10);
+    const todayNew = customers.filter(c => c.submitTime.slice(0, 10) === today).length;
+    const total = customers.length;
+    const pending = customers.filter(c => ['new','contacted','following'].includes(c.status)).length;
+    const signed = customers.filter(c => c.status === 'signed').length;
+    return { todayNew, total, pending, signed };
+  }, [customers]);
+
+  const recentCustomers = useMemo(() => {
+    return [...customers].sort((a,b) => b.submitTime.localeCompare(a.submitTime)).slice(0, 5);
+  }, [customers]);
+
+  const statusCounts = useMemo(() => {
+    const map = {};
+    customers.forEach(c => { map[c.status] = (map[c.status] || 0) + 1; });
+    return map;
+  }, [customers]);
+
+  return (
+    <div className="animate-fadeIn">
+      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6">数据概览</h2>
+
+      {/* Stat cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
+        <StatCard title="今日新客户" value={stats.todayNew} color="blue"   icon={<Icon.Users />} />
+        <StatCard title="总客户数"   value={stats.total}   color="indigo" icon={<Icon.Dashboard />} />
+        <StatCard title="待跟进"     value={stats.pending}  color="amber"  icon={<Icon.Alert />} />
+        <StatCard title="已签约"     value={stats.signed}   color="green"  icon={<Icon.Check />} />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        {/* Status distribution */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5">
+          <h3 className="font-semibold text-slate-700 text-sm sm:text-base mb-4">客户状态分布</h3>
+          <div className="space-y-3">
+            {STATUS_OPTIONS.map(opt => {
+              const count = statusCounts[opt.value] || 0;
+              const pct = customers.length ? Math.round((count / customers.length) * 100) : 0;
+              return (
+                <div key={opt.value} className="flex items-center gap-3">
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_MAP[opt.value].cls}`}>{opt.label}</span>
+                  <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="h-full bg-indigo-500 rounded-full transition-all duration-500" style={{width: `${pct}%`}} />
+                  </div>
+                  <span className="text-xs text-slate-400 w-10 text-right font-medium">{count}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Recent customers */}
+        <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-5">
+          <h3 className="font-semibold text-slate-700 text-sm sm:text-base mb-4">最新客户</h3>
+          <div className="space-y-2">
+            {recentCustomers.map(c => (
+              <div key={c.id} className="flex items-center justify-between py-2 border-b border-slate-50 last:border-0">
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-slate-700 truncate">{c.name}</p>
+                  <p className="text-xs text-slate-400">{c.targetDegree} · {c.enrollmentTime}</p>
+                </div>
+                <span className={`text-xs px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${STATUS_MAP[c.status].cls}`}>
+                  {STATUS_MAP[c.status].label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────── CUSTOMER LIST ──────────────────────────── */
+function CustomerList({ customers, onUpdateCustomer }) {
+  const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [expandedId, setExpandedId] = useState(null);
+  const [editingNoteId, setEditingNoteId] = useState(null);
+  const [noteText, setNoteText] = useState('');
+
+  const filtered = useMemo(() => {
+    return customers.filter(c => {
+      const matchSearch = !search || c.name.includes(search) || c.wechat.includes(search) || (c.phone && c.phone.includes(search));
+      const matchStatus = statusFilter === 'all' || c.status === statusFilter;
+      return matchSearch && matchStatus;
+    });
+  }, [customers, search, statusFilter]);
+
+  const handleStatusChange = (id, newStatus) => {
+    onUpdateCustomer(id, { status: newStatus });
+  };
+
+  const addNote = (id) => {
+    if (!noteText.trim()) return;
+    const now = new Date();
+    const ts = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    const customer = customers.find(c => c.id === id);
+    const newNotes = [...(customer.notes || []), { text: noteText.trim(), time: ts }];
+    onUpdateCustomer(id, { notes: newNotes });
+    setNoteText('');
+    setEditingNoteId(null);
+  };
+
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  return (
+    <div className="animate-fadeIn">
+      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6">客户管理</h2>
+
+      {/* Filters */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-4">
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300"><Icon.Search /></span>
+          <input
+            className="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all"
+            placeholder="搜索姓名 / 微信号 / 手机号"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
+        <select
+          className="px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-indigo-100 focus:border-indigo-400 transition-all text-slate-600"
+          value={statusFilter}
+          onChange={e => setStatusFilter(e.target.value)}
+        >
+          <option value="all">全部状态</option>
+          {STATUS_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+        </select>
+        <span className="text-xs text-slate-400 self-center flex-shrink-0">
+          共 {filtered.length} 条
+        </span>
+      </div>
+
+      {/* Table */}
+      <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div className="table-wrapper overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-slate-100 bg-slate-50/50">
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">姓名</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden sm:table-cell">微信号</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">学历</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden md:table-cell">申请层次</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">韩语</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider hidden lg:table-cell">入学时间</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider">状态</th>
+                <th className="text-left px-4 py-3 text-xs font-semibold text-slate-400 uppercase tracking-wider w-10"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map(c => (
+                <CustomerRow
+                  key={c.id}
+                  customer={c}
+                  isExpanded={expandedId === c.id}
+                  onToggle={() => toggleExpand(c.id)}
+                  onStatusChange={(s) => handleStatusChange(c.id, s)}
+                  onAddNote={() => addNote(c.id)}
+                  noteText={noteText}
+                  setNoteText={setNoteText}
+                  isEditingNote={editingNoteId === c.id}
+                  onStartEditNote={() => { setEditingNoteId(editingNoteId === c.id ? null : c.id); setNoteText(''); }}
+                />
+              ))}
+              {filtered.length === 0 && (
+                <tr><td colSpan="8" className="text-center py-12 text-slate-300 text-sm">没有匹配的客户记录</td></tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────── CUSTOMER ROW ──────────────────────────── */
+function CustomerRow({ customer:c, isExpanded, onToggle, onStatusChange, onAddNote, noteText, setNoteText, isEditingNote, onStartEditNote }) {
+  const infoFields = [
+    { label: '手机号',       value: c.phone || '未填写' },
+    { label: '学历阶段',     value: c.education },
+    { label: '申请层次',     value: c.targetDegree },
+    { label: '韩语水平',     value: c.koreanLevel },
+    { label: '英语水平',     value: c.englishLevel },
+    { label: '目标院校',     value: Array.isArray(c.targetSchools) ? c.targetSchools.join('、') : c.targetSchools },
+    { label: '计划入学',     value: c.enrollmentTime },
+    { label: '主要顾虑',     value: Array.isArray(c.concerns) ? c.concerns.join('、') : c.concerns },
+    { label: '提交时间',     value: c.submitTime },
+  ];
+
+  return (
+    <>
+      {/* Main row */}
+      <tr className="customer-row border-b border-slate-50 cursor-pointer" onClick={onToggle}>
+        <td className="px-4 py-3">
+          <span className="font-medium text-slate-800">{c.name}</span>
+          <span className="block text-xs text-slate-400 sm:hidden">{c.wechat}</span>
+        </td>
+        <td className="px-4 py-3 text-slate-600 hidden sm:table-cell">{c.wechat}</td>
+        <td className="px-4 py-3 text-slate-600 hidden md:table-cell">{c.education}</td>
+        <td className="px-4 py-3 text-slate-600 hidden md:table-cell">{c.targetDegree}</td>
+        <td className="px-4 py-3 text-slate-600 hidden lg:table-cell">{c.koreanLevel}</td>
+        <td className="px-4 py-3 text-slate-600 hidden lg:table-cell">{c.enrollmentTime}</td>
+        <td className="px-4 py-3">
+          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${STATUS_MAP[c.status].cls}`}>
+            {STATUS_MAP[c.status].label}
+          </span>
+        </td>
+        <td className="px-4 py-3 text-slate-300">
+          {isExpanded ? <Icon.ChevronUp /> : <Icon.ChevronDown />}
+        </td>
+      </tr>
+
+      {/* Expanded detail */}
+      {isExpanded && (
+        <tr key={`exp-${c.id}`}>
+          <td colSpan="8" className="px-4 py-4 bg-slate-50/50 border-b border-slate-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-sm animate-slideLeft">
+              {infoFields.map(f => (
+                <div key={f.label}>
+                  <span className="text-xs text-slate-400">{f.label}</span>
+                  <p className="text-slate-700 font-medium mt-0.5">{f.value}</p>
+                </div>
+              ))}
+
+              {/* Status change */}
+              <div>
+                <span className="text-xs text-slate-400">状态变更</span>
+                <select
+                  className="mt-1 px-3 py-1.5 border border-slate-200 rounded-lg text-xs outline-none focus:border-indigo-400 transition-all bg-white text-slate-700"
+                  value={c.status}
+                  onChange={e => { e.stopPropagation(); onStatusChange(e.target.value); }}
+                  onClick={e => e.stopPropagation()}
+                >
+                  {STATUS_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                </select>
+              </div>
+            </div>
+
+            {/* Notes section */}
+            <div className="mt-4 pt-4 border-t border-slate-200">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">跟进备注</span>
+                <button
+                  className="flex items-center gap-1 text-xs text-indigo-500 hover:text-indigo-700 font-medium transition-colors"
+                  onClick={e => { e.stopPropagation(); onStartEditNote(); }}
+                >
+                  <Icon.Plus /> 添加备注
+                </button>
+              </div>
+
+              {/* Note list */}
+              {c.notes && c.notes.length > 0 ? (
+                <div className="space-y-2 mb-3">
+                  {c.notes.map((n, i) => (
+                    <div key={i} className="flex gap-2 text-xs bg-white rounded-lg p-3 border border-slate-100">
+                      <Icon.Clock />
+                      <div className="flex-1 min-w-0">
+                        <p className="text-slate-600">{n.text}</p>
+                        <p className="text-slate-300 mt-1">{n.time}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xs text-slate-300 mb-3">暂无备注</p>
+              )}
+
+              {/* Add note input */}
+              {isEditingNote && (
+                <div className="flex gap-2 animate-slideLeft" onClick={e => e.stopPropagation()}>
+                  <input
+                    className="flex-1 px-3 py-2 border border-slate-200 rounded-lg text-xs outline-none focus:border-indigo-400 transition-all"
+                    placeholder="输入备注内容..."
+                    value={noteText}
+                    onChange={e => setNoteText(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') onAddNote(); }}
+                    autoFocus
+                  />
+                  <button
+                    className="px-4 py-2 bg-indigo-600 text-white text-xs font-medium rounded-lg hover:bg-indigo-700 transition-colors active:scale-95"
+                    onClick={onAddNote}
+                  >
+                    保存
+                  </button>
+                </div>
+              )}
+            </div>
+          </td>
+        </tr>
+      )}
+    </>
+  );
+}
+
+/* ──────────────────────────── SIDEBAR ──────────────────────────── */
+function Sidebar({ currentPage, onNavigate, onLogout, mobileOpen, onCloseMobile }) {
+  const navItems = [
+    { id: 'dashboard', label: '数据看板', icon: <Icon.Dashboard /> },
+    { id: 'customers', label: '客户管理', icon: <Icon.Users /> },
+  ];
+
+  const navContent = (
+    <div className="flex flex-col h-full">
+      {/* Logo */}
+      <div className="p-5 border-b border-slate-700/50 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0">
+            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+            </svg>
+          </div>
+          <div>
+            <p className="text-sm font-bold text-white leading-tight">留学管理</p>
+            <p className="text-[10px] text-slate-400 leading-tight">Admin Panel</p>
+          </div>
+        </div>
+        <button onClick={onCloseMobile} className="lg:hidden text-slate-400 hover:text-white transition-colors">
+          <Icon.X />
+        </button>
+      </div>
+
+      {/* Nav links */}
+      <nav className="flex-1 p-3 space-y-1">
+        {navItems.map(item => (
+          <button
+            key={item.id}
+            onClick={() => { onNavigate(item.id); onCloseMobile(); }}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${currentPage === item.id ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/20' : 'text-slate-300 hover:text-white hover:bg-slate-700/50'}`}
+          >
+            {item.icon}
+            {item.label}
+          </button>
+        ))}
+      </nav>
+
+      {/* User / Logout */}
+      <div className="p-3 border-t border-slate-700/50">
+        <div className="flex items-center gap-3 px-3 py-2 mb-2">
+          <div className="w-8 h-8 bg-slate-600 rounded-full flex items-center justify-center text-xs font-bold text-white">A</div>
+          <div>
+            <p className="text-xs font-medium text-slate-200">Admin</p>
+            <p className="text-[10px] text-slate-500">管理员</p>
+          </div>
+        </div>
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-slate-400 hover:text-red-400 hover:bg-slate-700/50 transition-all duration-200"
+        >
+          <Icon.Logout /> 退出登录
+        </button>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Desktop sidebar */}
+      <aside className="hidden lg:flex lg:w-56 xl:w-60 bg-slate-800 flex-col flex-shrink-0">
+        {navContent}
+      </aside>
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-30 lg:hidden">
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onCloseMobile} />
+          <aside className="absolute left-0 top-0 bottom-0 w-60 bg-slate-800 animate-slideLeft z-40">
+            {navContent}
+          </aside>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* ──────────────────────────── MAIN LAYOUT ──────────────────────────── */
+function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <div className="min-h-screen flex">
+      <Sidebar
+        currentPage={currentPage}
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+        mobileOpen={mobileOpen}
+        onCloseMobile={() => setMobileOpen(false)}
+      />
+
+      {/* Main content */}
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Top bar (mobile) */}
+        <header className="lg:hidden flex items-center justify-between px-4 py-3 bg-white border-b border-slate-200 flex-shrink-0">
+          <button onClick={() => setMobileOpen(true)} className="text-slate-500 hover:text-slate-700 transition-colors p-1">
+            <Icon.Menu />
+          </button>
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+              </svg>
+            </div>
+            <span className="text-sm font-bold text-slate-700">留学管理</span>
+          </div>
+          <button onClick={onLogout} className="text-slate-400 hover:text-red-500 transition-colors p-1">
+            <Icon.Logout />
+          </button>
+        </header>
+
+        {/* Page content */}
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">
+          {currentPage === 'dashboard' && <Dashboard customers={customers} />}
+          {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} />}
+        </main>
+      </div>
+    </div>
+  );
+}
+
+/* ──────────────────────────── APP ROOT ──────────────────────────── */
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [customers, setCustomers] = useState(MOCK_CUSTOMERS);
+
+  const updateCustomer = useCallback((id, updates) => {
+    setCustomers(prev => prev.map(c => c.id === id ? { ...c, ...updates } : c));
+  }, []);
+
+  if (!isLoggedIn) {
+    return <LoginPage onLogin={() => setIsLoggedIn(true)} />;
+  }
+
+  return (
+    <MainLayout
+      currentPage={currentPage}
+      onNavigate={setCurrentPage}
+      onLogout={() => setIsLoggedIn(false)}
+      customers={customers}
+      onUpdateCustomer={updateCustomer}
+    />
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
