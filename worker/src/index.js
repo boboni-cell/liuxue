@@ -5,7 +5,7 @@ export default {
 
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     };
 
@@ -99,6 +99,34 @@ export default {
         await env.LIUXUE_DATA.put(`client:${id}`, JSON.stringify(client));
 
         return new Response(JSON.stringify({ success: true, client }), {
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      } catch (e) {
+        return new Response(JSON.stringify({ error: e.message }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        });
+      }
+    }
+
+    // ── DELETE /api/clients/:id ──
+    if (putMatch && request.method === 'DELETE') {
+      try {
+        const id = putMatch[1];
+        const raw = await env.LIUXUE_DATA.get(`client:${id}`);
+        if (!raw) {
+          return new Response(JSON.stringify({ error: '客户不存在' }), {
+            status: 404,
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
+          });
+        }
+
+        await env.LIUXUE_DATA.delete(`client:${id}`);
+        const indexRaw = await env.LIUXUE_DATA.get('clients:index');
+        const index = indexRaw ? JSON.parse(indexRaw) : [];
+        await env.LIUXUE_DATA.put('clients:index', JSON.stringify(index.filter(clientId => clientId !== id)));
+
+        return new Response(JSON.stringify({ success: true }), {
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
         });
       } catch (e) {

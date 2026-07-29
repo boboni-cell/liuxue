@@ -93,6 +93,12 @@ async function updateClientAPI(id, updates) {
   return await res.json();
 }
 
+async function deleteClientAPI(id) {
+  const res = await fetch(API_BASE + '/api/clients/' + id, { method: 'DELETE' });
+  if (!res.ok) throw new Error('API error: ' + res.status);
+  return await res.json();
+}
+
 /* ──────────────────────────── MOCK DATA ──────────────────────────── */
 function daysAgo(n) {
   const d = new Date(); d.setDate(d.getDate() - n);
@@ -293,7 +299,7 @@ function Dashboard({ customers, onRefresh }) {
 }
 
 /* ──────────────────────────── CUSTOMER LIST ──────────────────────────── */
-function CustomerList({ customers, onUpdateCustomer, onRefresh }) {
+function CustomerList({ customers, onUpdateCustomer, onDeleteCustomer, onRefresh }) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [expandedId, setExpandedId] = useState(null);
@@ -325,6 +331,12 @@ function CustomerList({ customers, onUpdateCustomer, onRefresh }) {
 
   const toggleExpand = (id) => {
     setExpandedId(expandedId === id ? null : id);
+  };
+
+  const handleDelete = async (customer) => {
+    if (!window.confirm(`确定要删除客户“${customer.name}”吗？此操作无法撤销。`)) return;
+    await onDeleteCustomer(customer.id);
+    setExpandedId(null);
   };
 
   return (
@@ -385,6 +397,7 @@ function CustomerList({ customers, onUpdateCustomer, onRefresh }) {
                   isExpanded={expandedId === c.id}
                   onToggle={() => toggleExpand(c.id)}
                   onStatusChange={(s) => handleStatusChange(c.id, s)}
+                  onDelete={() => handleDelete(c)}
                   onAddNote={() => addNote(c.id)}
                   noteText={noteText}
                   setNoteText={setNoteText}
@@ -404,7 +417,7 @@ function CustomerList({ customers, onUpdateCustomer, onRefresh }) {
 }
 
 /* ──────────────────────────── CUSTOMER ROW ──────────────────────────── */
-function CustomerRow({ customer:c, isExpanded, onToggle, onStatusChange, onAddNote, noteText, setNoteText, isEditingNote, onStartEditNote }) {
+function CustomerRow({ customer:c, isExpanded, onToggle, onStatusChange, onDelete, onAddNote, noteText, setNoteText, isEditingNote, onStartEditNote }) {
   const infoFields = [
     { label: '手机号',       value: c.phone || '未填写' },
     { label: '学历阶段',     value: c.education },
@@ -515,6 +528,15 @@ function CustomerRow({ customer:c, isExpanded, onToggle, onStatusChange, onAddNo
                 </div>
               )}
             </div>
+
+            <div className="mt-4 pt-4 border-t border-slate-200 flex justify-end">
+              <button
+                className="px-3 py-1.5 text-xs font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors"
+                onClick={e => { e.stopPropagation(); onDelete(); }}
+              >
+                删除客户
+              </button>
+            </div>
           </td>
         </tr>
       )}
@@ -610,7 +632,7 @@ function Sidebar({ currentPage, onNavigate, onLogout, mobileOpen, onCloseMobile 
 }
 
 /* ──────────────────────────── MAIN LAYOUT ──────────────────────────── */
-function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer, onRefresh, loading, apiError }) {
+function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer, onDeleteCustomer, onRefresh, loading, apiError }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -667,7 +689,7 @@ function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCust
         {!loading && (
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">
           {currentPage === 'dashboard' && <Dashboard customers={customers} onRefresh={onRefresh} />}
-          {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} onRefresh={onRefresh} />}
+          {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} onDeleteCustomer={onDeleteCustomer} onRefresh={onRefresh} />}
         </main>
         )}
       </div>
@@ -687,7 +709,7 @@ function App() {
   useEffect(() => {
     fetchClients()
       .then(data => {
-        if (data && data.length > 0) {
+        if (Array.isArray(data)) {
           setCustomers(data);
         }
         setApiError(false);
@@ -708,11 +730,22 @@ function App() {
     });
   }, []);
 
+  const deleteCustomer = useCallback(async (id) => {
+    try {
+      await deleteClientAPI(id);
+      setCustomers(prev => prev.filter(c => c.id !== id));
+    } catch (err) {
+      console.error('API 删除失败:', err);
+      window.alert('删除失败，请稍后重试');
+      throw err;
+    }
+  }, []);
+
   const refreshData = useCallback(() => {
     setLoading(true);
     fetchClients()
       .then(data => {
-        if (data && data.length > 0) {
+        if (Array.isArray(data)) {
           setCustomers(data);
         }
         setApiError(false);
@@ -735,6 +768,7 @@ function App() {
       onLogout={() => setIsLoggedIn(false)}
       customers={customers}
       onUpdateCustomer={updateCustomer}
+      onDeleteCustomer={deleteCustomer}
       onRefresh={refreshData}
       loading={loading}
       apiError={apiError}
