@@ -1,0 +1,7 @@
+name = "liuxue-api"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[[kv_namespaces]]
+binding = "LIUXUE_DATA"
+id = "YOUR_KV_ID_HERE"

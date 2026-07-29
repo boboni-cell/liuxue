@@ -73,6 +73,26 @@ const STATUS_MAP = {
 };
 const STATUS_OPTIONS = Object.entries(STATUS_MAP).map(([k,v]) => ({ value: k, label: v.label }));
 
+// ⚠️ 部署后替换为你的 Worker URL
+const API_BASE = 'https://liuxue-api.你的子域名.workers.dev';
+
+/* ──────────────────────────── API HELPERS ──────────────────────────── */
+async function fetchClients() {
+  const res = await fetch(API_BASE + '/api/clients');
+  if (!res.ok) throw new Error('API error: ' + res.status);
+  return await res.json();
+}
+
+async function updateClientAPI(id, updates) {
+  const res = await fetch(API_BASE + '/api/clients/' + id, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(updates),
+  });
+  if (!res.ok) throw new Error('API error: ' + res.status);
+  return await res.json();
+}
+
 /* ──────────────────────────── MOCK DATA ──────────────────────────── */
 function daysAgo(n) {
   const d = new Date(); d.setDate(d.getDate() - n);
@@ -590,7 +610,7 @@ function Sidebar({ currentPage, onNavigate, onLogout, mobileOpen, onCloseMobile 
 }
 
 /* ──────────────────────────── MAIN LAYOUT ──────────────────────────── */
-function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer, onRefresh }) {
+function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer, onRefresh, loading, apiError }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -626,45 +646,82 @@ function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCust
           </button>
         </header>
 
+        {/* API error banner */}
+        {apiError && (
+          <div className="mx-4 mt-3 sm:mx-6 lg:mx-8 px-4 py-2.5 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-700 flex items-center gap-2">
+            <Icon.Alert /> API 连接失败，当前显示模拟数据 <button onClick={onRefresh} className="underline font-medium hover:text-amber-800 ml-2">重试</button>
+          </div>
+        )}
+
+        {/* Loading overlay */}
+        {loading && (
+          <div className="flex-1 flex items-center justify-center">
+            <div className="text-slate-400 text-sm flex items-center gap-2">
+              <svg className="animate-spin w-4 h-4" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
+              加载数据中...
+            </div>
+          </div>
+        )}
+
         {/* Page content */}
+        {!loading && (
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">
           {currentPage === 'dashboard' && <Dashboard customers={customers} onRefresh={onRefresh} />}
           {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} onRefresh={onRefresh} />}
         </main>
+        )}
       </div>
     </div>
   );
 }
 
 /* ──────────────────────────── APP ROOT ──────────────────────────── */
-function loadFromStorage() {
-  const stored = localStorage.getItem('clients');
-  if (stored) {
-    try { return JSON.parse(stored); } catch(e) { return null; }
-  }
-  return null;
-}
-
-function saveToStorage(customers) {
-  localStorage.setItem('clients', JSON.stringify(customers));
-}
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [customers, setCustomers] = useState(() => loadFromStorage() || MOCK_CUSTOMERS);
+  const [customers, setCustomers] = useState(MOCK_CUSTOMERS);
+  const [loading, setLoading] = useState(true);
+  const [apiError, setApiError] = useState(false);
+
+  // 页面加载时从 API 拉取数据
+  useEffect(() => {
+    fetchClients()
+      .then(data => {
+        if (data && data.length > 0) {
+          setCustomers(data);
+        }
+        setApiError(false);
+      })
+      .catch(err => {
+        console.error('API 获取失败，使用模拟数据:', err);
+        setApiError(true);
+      })
+      .finally(() => setLoading(false));
+  }, []);
 
   const updateCustomer = useCallback((id, updates) => {
-    setCustomers(prev => {
-      const next = prev.map(c => c.id === id ? { ...c, ...updates } : c);
-      saveToStorage(next);
-      return next;
+    // 乐观更新本地状态
+    setCustomers(prev => prev.map(c => c.id === id ? { ...c, ...updates } : c));
+    // 同步到 API（fire-and-forget）
+    updateClientAPI(id, updates).catch(err => {
+      console.error('API 更新失败:', err);
     });
   }, []);
 
   const refreshData = useCallback(() => {
-    const stored = loadFromStorage();
-    setCustomers(stored || MOCK_CUSTOMERS);
+    setLoading(true);
+    fetchClients()
+      .then(data => {
+        if (data && data.length > 0) {
+          setCustomers(data);
+        }
+        setApiError(false);
+      })
+      .catch(err => {
+        console.error('刷新失败:', err);
+        setApiError(true);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   if (!isLoggedIn) {
@@ -679,6 +736,8 @@ function App() {
       customers={customers}
       onUpdateCustomer={updateCustomer}
       onRefresh={refreshData}
+      loading={loading}
+      apiError={apiError}
     />
   );
 }
