@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>重磅！韩国推出"K-STAR签证"，STEM硕博毕业直获永居 — North Light 北向光</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav.scrolled { padding: 10px 0; }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Article Cover ── */
+.article-cover {
+  width: 100%; height: 400px;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 30%, var(--blue-500) 70%, var(--blue-400) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.article-cover::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 25% 30%, rgba(232,169,64,0.12) 0%, transparent 50%),
+              radial-gradient(circle at 75% 70%, rgba(61,122,204,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 50% 90%, rgba(212,148,43,0.06) 0%, transparent 40%);
+}
+.article-cover::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+  background: linear-gradient(180deg, transparent 0%, rgba(10,22,40,0.7) 100%);
+}
+.article-cover-inner {
+  position: relative; z-index: 1;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px 48px;
+  width: 100%;
+}
+.article-cover-label {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--amber-300); margin-bottom: 12px;
+}
+.article-cover h1 {
+  font-size: 34px; font-weight: 800; color: var(--white);
+  line-height: 1.3; letter-spacing: -0.02em; max-width: 780px;
+}
+@media (max-width: 640px) {
+  .article-cover { height: 320px; }
+  .article-cover h1 { font-size: 24px; }
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb {
+  padding: 24px 0 0;
+  font-size: 13px; color: var(--gray-400);
+}
+.breadcrumb a { color: var(--gray-400); text-decoration: none; transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--amber-500); }
+
+/* ── Article Meta ── */
+.article-meta-bar {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  padding: 32px 0 40px;
+  border-bottom: 1px solid var(--gray-200); margin-bottom: 40px;
+}
+.article-category {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+  background: var(--amber-100); color: var(--amber-500);
+}
+.article-category::before { content: ''; width: 6px; height: 6px; background: var(--amber-500); border-radius: 50%; }
+.article-date { font-size: 14px; color: var(--gray-500); display: flex; align-items: center; gap: 6px; }
+.article-read-time { font-size: 14px; color: var(--gray-500); display: flex; align-items: center; gap: 6px; }
+
+/* ── Article Body ── */
+.article-body {
+  max-width: 760px; margin: 0 auto; padding: 0 24px;
+  font-size: 16px; color: var(--gray-700); line-height: 1.9;
+}
+.article-body h2 {
+  font-size: 24px; font-weight: 800; color: var(--gray-800);
+  margin: 48px 0 20px; letter-spacing: -0.01em;
+  padding-left: 16px; border-left: 4px solid var(--amber-500);
+}
+.article-body h2:first-of-type { margin-top: 0; }
+.article-body p { margin-bottom: 20px; }
+.article-body strong { color: var(--gray-900); font-weight: 700; }
+.article-body .highlight {
+  background: linear-gradient(180deg, transparent 60%, var(--amber-100) 60%);
+  padding: 0 2px;
+}
+
+/* ── Image Placeholder ── */
+.img-placeholder {
+  background: linear-gradient(135deg, var(--navy-700) 0%, var(--navy-600) 40%, var(--blue-500) 100%);
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 240px; position: relative; overflow: hidden;
+  margin: 36px 0;
+}
+.img-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+}
+.img-placeholder svg { width: 44px; height: 44px; opacity: 0.5; position: relative; z-index: 1; }
+.img-placeholder span { font-size: 13px; margin-top: 10px; position: relative; z-index: 1; opacity: 0.6; }
+
+/* ── CTA Block ── */
+.cta-block {
+  max-width: 760px; margin: 56px auto 0; padding: 0 24px;
+}
+.cta-card {
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-700) 100%);
+  border-radius: var(--radius-lg); padding: 40px 36px;
+  text-align: center; color: var(--white);
+  border: 1px solid rgba(240,192,96,0.15);
+}
+.cta-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.cta-card p { font-size: 15px; color: var(--gray-400); margin-bottom: 24px; }
+.cta-card a {
+  display: inline-block; padding: 14px 36px;
+  background: linear-gradient(135deg, var(--amber-500), var(--amber-400));
+  color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 15px;
+  text-decoration: none; transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(212,148,43,0.3);
+}
+.cta-card a:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(212,148,43,0.45); }
+
+/* ── Related Articles ── */
+.related-section {
+  max-width: 760px; margin: 64px auto 80px; padding: 0 24px;
+}
+.related-section h3 {
+  font-size: 20px; font-weight: 700; color: var(--gray-800);
+  margin-bottom: 28px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--gray-100);
+}
+.related-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 500px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+.related-card {
+  padding: 20px 24px; border: 1px solid var(--gray-200); border-radius: var(--radius);
+  text-decoration: none; color: inherit; transition: all var(--transition);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.related-card:hover {
+  border-color: var(--blue-300); box-shadow: 0 8px 24px rgba(43,94,167,0.08);
+}
+.related-card h4 { font-size: 15px; font-weight: 700; color: var(--gray-800); line-height: 1.4; }
+.related-card .related-meta { font-size: 12px; color: var(--gray-400); }
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.15s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">&#10025;</div>
+      North Light<span>北向光</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" data-nav>首页</a></li>
+      <li><a href="../services.html" data-nav>服务项目</a></li>
+      <li><a href="../cases.html" data-nav>成功案例</a></li>
+      <li><a href="../resources.html" class="active" data-nav>资讯中心</a></li>
+      <li><a href="../about.html" data-nav>关于我们</a></li>
+      <li><a href="../assessment.html" class="nav-cta">免费评估 &#8594;</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Cover Image ── -->
+<section class="article-cover">
+  <div class="article-cover-inner">
+    <div class="article-cover-label">Breaking News</div>
+    <h1>重磅！韩国推出"K-STAR签证"，STEM硕博毕业直获永居</h1>
+  </div>
+</section>
+
+<!-- ── Breadcrumb ── -->
+<div class="container">
+  <div class="breadcrumb">
+    <a href="../index.html">首页</a> &gt; <a href="../resources.html">资讯中心</a> &gt; 重磅！韩国推出"K-STAR签证"，STEM硕博毕业直获永居
+  </div>
+</div>
+
+<!-- ── Article Meta ── -->
+<div class="container">
+  <div class="article-meta-bar reveal">
+    <span class="article-category">最新动态</span>
+    <span class="article-date">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      2026-07-25
+    </span>
+    <span class="article-read-time">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      阅读 5 分钟
+    </span>
+  </div>
+</div>
+
+<!-- ── Article Body ── -->
+<div class="article-body reveal">
+  <p>2026年7月，韩国法务部联合教育部正式发布了一项令留学生振奋的新政策——<strong>K-STAR（Korea Science &amp; Technology Advanced Researcher）签证</strong>。该签证面向STEM专业（科学、技术、工程、数学）的硕士和博士毕业生，<span class="highlight">符合条件的毕业生可直接申请韩国永久居留权（F-5）</span>，不再需要经历漫长的工作签证转换流程。这是韩国留学史上最具突破性的移民政策调整之一，被业内称为"韩国版STEM绿卡"。</p>
+
+  <p>韩国政府此举并非临时起意。据韩国产业通商资源部2026年数据，<strong>韩国半导体行业人才缺口已达4.2万人</strong>，AI和软件领域缺口约2.8万人。三星电子、SK海力士、LG电子等头部企业长期面临"人才荒"，而韩国本土STEM毕业生数量远远无法满足产业需求。在此背景下，<strong>K-STAR签证成为了韩国"全球人才抢夺战"的核心武器</strong>。</p>
+</div>
+
+<div class="img-placeholder article-body reveal reveal-delay-1">
+  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  <span>K-STAR签证政策发布现场</span>
+</div>
+
+<div class="article-body reveal reveal-delay-1">
+  <h2>K-STAR签证政策详解</h2>
+
+  <p>K-STAR签证的申请条件相对清晰：<strong>在韩国教育部认证的大学完成STEM相关专业的硕士或博士学位</strong>，GPA不低于3.0/4.3（或等同学术水平），即可提出申请。与传统的F-5永居申请路径相比，K-STAR签证的核心优势在于：</p>
+
+  <p><strong>第一，大幅缩短等待时间。</strong>传统路径下，留学生毕业后需先换D-10求职签证（最长3年），再转E-7工作签证（1-5年），满足居住年限后才能申请F-5永居，整个流程动辄需要6-8年。而K-STAR签证<strong>直接跳过D-10和E-7阶段，硕博毕业即可申请</strong>，审批周期约3-6个月。</p>
+
+  <p><strong>第二，取消收入门槛。</strong>一般F-5申请要求申请人年收入不低于韩国人均GNI的1.5倍（2026年约合人民币23万元）。K-STAR签证<strong>免除此项要求</strong>，仅需提供基本生活费用证明。</p>
+
+  <p><strong>第三，配偶和子女同步获益。</strong>K-STAR主申请人获批后，配偶和未成年子女可同步获得F-5永居身份。配偶可在韩国自由就业，无需单独申请工作许可；子女可进入韩国公立教育体系，享受与韩国国民同等的入学待遇。</p>
+
+  <p>值得注意的是，K-STAR签证<strong>目前采用配额制</strong>。2026年首批配额为2,000人，未来将根据政策效果逐步扩大。韩国法务部表示，预计到2028年将提升至每年5,000人的规模。</p>
+</div>
+
+<div class="img-placeholder article-body reveal reveal-delay-2">
+  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  <span>GKS奖学金新政图解</span>
+</div>
+
+<div class="article-body reveal reveal-delay-2">
+  <h2>GKS奖学金向硬核专业倾斜</h2>
+
+  <p>与K-STAR签证同步推出的还有GKS（Global Korea Scholarship）奖学金的重大调整。2026年起，<strong>GKS奖学金总额中70%的名额将优先分配给半导体、AI、新能源、生物技术、新材料五个方向</strong>。这一调整意味着，传统热门专业如经营学、国语国文、传媒等方向的GKS名额将显著减少。</p>
+
+  <p>具体数据方面：2026年GKS硕士奖学金名额约1,400个，其中<strong>约980个名额将分配给上述五大硬核专业方向</strong>。博士奖学金名额约600个，其中约420个面向STEM领域。获得GKS全额奖学金的学生，将享受<strong>学费全免、每月生活费补贴150万韩元（约7,800元人民币）、往返机票报销、一年免费韩语培训</strong>等福利。</p>
+
+  <p>此外，GKS还新增了<strong>"企业联合培养"通道</strong>。三星、SK、LG、POSCO等企业将与部分指定大学合作，为特定专业的GKS获得者提供额外每月50-100万韩元（约2,600-5,200元人民币）的企业津贴，条件是毕业后需在该企业工作至少2年。这个模式对学生和企业实现了双赢。</p>
+
+  <h2>"育成型专业技术学科"新设</h2>
+
+  <p>韩国教育部同步推出了<strong>"育成型专业技术学科"（育成専門技術学科）</strong>制度。被认定为该类型的学科，其留学生将享受多项特殊待遇：</p>
+
+  <p><strong>免除资金证明要求：</strong>一般留学生申请D-2签证需提供1,600万韩元（约8.4万人民币）以上的存款证明。育成型专业技术学科的学生<strong>完全免除这一要求</strong>，极大降低了申请门槛。</p>
+
+  <p><strong>打工时长放宽：</strong>普通留学生本科生每周最多打工20小时、研究生30小时。育成型学科的学生<strong>本科生可打工25小时、研究生35小时</strong>，假期期间无限制。</p>
+
+  <p><strong>奖学金叠加：</strong>育成型学科的学生可同时申请GKS、校内奖学金、企业奖学金，且<strong>不设金额上限</strong>。以成均馆大学半导体工程学科为例，叠加GKS和三星企业奖学金后，学生每年可获得约2,800万韩元（约14.6万人民币），不仅覆盖全部学费和生活费，还能有所结余。</p>
+
+  <p>目前，<strong>首尔大学、KAIST、延世大学、高丽大学、成均馆大学、浦项科技大学</strong>等六所高校的首批育成型学科已通过教育部审核，预计2026年秋季学期正式招生。</p>
+</div>
+
+<div class="img-placeholder article-body reveal reveal-delay-3">
+  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  <span>韩国半导体企业人才需求趋势</span>
+</div>
+
+<div class="article-body reveal reveal-delay-3">
+  <h2>韩国企业人才需求背景</h2>
+
+  <p>K-STAR签证等一系列政策的推出，根源在于韩国产业界的迫切需求。根据韩国雇佣劳动部2026年发布的《未来产业人才供需报告》，<strong>到2030年，韩国半导体、AI、新能源三大领域累计人才缺口预计将达到16.5万人</strong>。</p>
+
+  <p><strong>三星电子</strong>2026年宣布投资300万亿韩元（约1.56万亿人民币）建设龙仁半导体集群，规划期至2042年，预计将直接创造2万个高质量就业岗位。三星目前半导体部门外籍工程师占比约8%，计划到2030年提升至20%。<strong>SK海力士</strong>同样投资120万亿韩元扩建清州和利川生产基地，明确表示将优先招聘STEM背景的留学生。</p>
+
+  <p><strong>LG新能源、现代汽车、韩华集团</strong>等也在加速人才储备。LG新能源2026年与KAIST签署了"电池技术人才联合培养协议"，每年定向招收50名国际硕士生，毕业后直接入职LG新能源研究院。</p>
+
+  <h2>对留学生的实际影响</h2>
+
+  <p>对于正在或计划赴韩留学的同学来说，这一系列政策变化意味着<strong>选对专业和学校比以往任何时候都更重要</strong>。以下是几点实用建议：</p>
+
+  <p><strong>优先选择STEM方向，尤其是半导体和AI相关专业。</strong>如果你本科是非理工科背景但有转行的想法，可以考虑申请韩国大学的"工科转换课程"——部分大学已开设面向文科本科生的1.5-2年制工科硕士项目，如东国大学的"AI融合硕士"和汉阳大学的"数据科学桥梁课程"。</p>
+
+  <p><strong>关注育成型专业技术学科的招生信息。</strong>这六所首批入选高校（首尔大学、KAIST、延世大学、高丽大学、成均馆大学、浦项科技大学）的专业设置和申请要求各不相同。建议提前查阅各校官网的国际学生招生页面，或咨询专业的留学顾问，获取第一手申请信息。</p>
+
+  <p><strong>提前规划韩语学习。</strong>虽然很多STEM课程提供英语授课，但<strong>达到TOPIK 3级甚至4级</strong>仍然是申请K-STAR签证的隐性加分项——审批时更倾向接纳具有一定韩语能力的申请人。此外，在企业就业和日常生活中，韩语能力也是不可替代的核心竞争力。</p>
+
+  <p><strong>抓住当前窗口期。</strong>K-STAR签证首批配额仅2,000人，申请竞争预计会非常激烈。建议有意向的同学尽快启动申请准备，赶在2027年春季入学或秋季入学时，进入符合条件的STEM项目。早一步入学，就早一步获得K-STAR签证的申请资格。</p>
+
+  <p>总的来说，K-STAR签证标志着<strong>韩国留学从"文化吸引力"向"职业前景吸引力"的战略转型</strong>。对于有志于在科技领域发展的留学生而言，这将是一个前所未有的黄金时代。</p>
+</div>
+
+<div class="img-placeholder article-body reveal reveal-delay-4">
+  <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+  <span>韩国留学STEM专业前景展望</span>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-block reveal">
+  <div class="cta-card">
+    <h3>想了解更多？</h3>
+    <p>立即免费评估你的留学可能性，获取专属韩国STEM留学方案</p>
+    <a href="../assessment.html">免费评估 &#8594;</a>
+  </div>
+</div>
+
+<!-- ── Related Articles ── -->
+<div class="related-section reveal">
+  <h3>相关文章</h3>
+  <div class="related-grid">
+    <a href="regional-visa.html" class="related-card">
+      <h4>广域型签证试点扩大：釜山、光州等6地留学生迎来新福利</h4>
+      <span class="related-meta">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026-07-20
+      </span>
+    </a>
+    <a href="job-market.html" class="related-card">
+      <h4>三星、SK海力士扩大留学生招聘，毕业即就业不是梦</h4>
+      <span class="related-meta">
+        <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        2026-07-10
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light 北向光</div>
+        <p class="footer-tagline">让我们成为您留学路上最明亮的指引光束。<br>韩国留学，从这里开始。</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../services.html">服务项目</a></li>
+          <li><a href="../cases.html">成功案例</a></li>
+          <li><a href="../assessment.html">免费评估</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="#">微信：NorthLight_Korea</a></li>
+          <li><a href="#">邮箱：info@northlight.kr</a></li>
+          <li><a href="#">地址：首尔市麻浦区</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 North Light 北向光. All rights reserved.</span>
+      <span>专注韩国留学咨询</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

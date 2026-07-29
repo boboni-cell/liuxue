@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韩国留学文书写作指南：自我介绍书和学习计划书怎么写 — North Light 北向光</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav.scrolled { padding: 10px 0; }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Page Banner ── */
+.page-banner {
+  min-height: 260px;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 40%, var(--navy-600) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 120px 24px 48px;
+}
+.page-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(232,169,64,0.06) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(61,122,204,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 50% 80%, rgba(212,148,43,0.04) 0%, transparent 40%);
+}
+.page-banner-content { position: relative; z-index: 1; }
+.page-banner-badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border: 1px solid rgba(240,192,96,0.3); border-radius: 100px; font-size: 13px; color: var(--amber-300); margin-bottom: 20px; backdrop-filter: blur(4px); }
+.page-banner-badge::before { content: ''; width: 6px; height: 6px; background: var(--amber-400); border-radius: 50%; box-shadow: 0 0 8px var(--amber-400); }
+.page-banner h1 { font-size: 36px; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.02em; }
+.page-banner .banner-sub { font-size: 16px; color: var(--gray-400); font-family: 'Inter', sans-serif; font-weight: 400; }
+@media (max-width: 640px) {
+  .page-banner { min-height: 220px; padding: 100px 24px 40px; }
+  .page-banner h1 { font-size: 28px; }
+  .page-banner .banner-sub { font-size: 14px; }
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb { padding: 24px 0 0; font-size: 13px; color: var(--gray-400); }
+.breadcrumb a { color: var(--gray-500); text-decoration: none; transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--blue-500); }
+.breadcrumb span { color: var(--gray-700); }
+
+/* ── Article Section ── */
+.article-section { padding: 32px 0 80px; }
+
+/* ── Cover Image ── */
+.article-cover {
+  height: 400px;
+  background: linear-gradient(135deg, var(--navy-800) 0%, var(--navy-600) 40%, var(--blue-500) 100%);
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); position: relative; overflow: hidden; margin-bottom: 32px;
+}
+.article-cover::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.article-cover svg { width: 56px; height: 56px; opacity: 0.5; position: relative; z-index: 1; }
+.article-cover span { font-size: 15px; margin-top: 12px; position: relative; z-index: 1; opacity: 0.6; }
+
+/* ── Article Meta ── */
+.article-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+.article-category { display: inline-block; padding: 6px 16px; background: linear-gradient(135deg, var(--blue-500), var(--blue-400)); color: var(--white); border-radius: 100px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; }
+.article-meta-text { font-size: 14px; color: var(--gray-500); display: flex; align-items: center; gap: 5px; }
+.article-meta-text svg { flex-shrink: 0; }
+
+/* ── Article Body ── */
+.article-body { color: var(--gray-700); }
+.article-body h2 { font-size: 24px; font-weight: 700; color: var(--gray-800); margin: 48px 0 16px; line-height: 1.3; letter-spacing: -0.01em; }
+.article-body h2:first-of-type { margin-top: 0; }
+.article-body p { font-size: 16px; line-height: 1.9; margin-bottom: 20px; color: var(--gray-600); }
+.article-body strong { color: var(--gray-800); font-weight: 700; }
+.article-body br + br { display: none; }
+
+/* ── Article Image Placeholder ── */
+.article-image {
+  height: 300px;
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.35); position: relative; overflow: hidden;
+  margin: 40px 0;
+}
+.article-image::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+}
+.article-image svg { width: 48px; height: 48px; opacity: 0.45; position: relative; z-index: 1; }
+.article-image span { font-size: 14px; margin-top: 10px; position: relative; z-index: 1; opacity: 0.55; }
+
+/* ── CTA Banner ── */
+.cta-banner {
+  margin-top: 64px; padding: 48px 40px;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700), var(--navy-600));
+  border-radius: var(--radius-lg); text-align: center; color: var(--white);
+  position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 60% 30%, rgba(232,169,64,0.08) 0%, transparent 50%);
+}
+.cta-banner h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; position: relative; z-index: 1; }
+.cta-banner p { font-size: 15px; color: var(--gray-300); margin-bottom: 24px; position: relative; z-index: 1; }
+.cta-btn {
+  display: inline-block; padding: 14px 36px;
+  background: linear-gradient(135deg, var(--amber-500), var(--amber-400));
+  color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 15px;
+  text-decoration: none; transition: all var(--transition);
+  box-shadow: 0 4px 20px rgba(212,148,43,0.35); position: relative; z-index: 1;
+}
+.cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,148,43,0.45); }
+
+/* ── Related Articles ── */
+.related-section { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--gray-200); }
+.related-section h3 { font-size: 20px; font-weight: 700; color: var(--gray-800); margin-bottom: 24px; }
+.related-list { display: flex; flex-direction: column; gap: 16px; }
+.related-link {
+  display: flex; align-items: center; gap: 12px; padding: 20px 24px;
+  border: 1px solid var(--gray-200); border-radius: var(--radius);
+  text-decoration: none; color: var(--gray-700); font-weight: 600; font-size: 15px;
+  transition: all var(--transition);
+}
+.related-link:hover { border-color: var(--blue-300); color: var(--blue-500); box-shadow: 0 4px 16px rgba(43,94,167,0.06); }
+.related-link svg { flex-shrink: 0; color: var(--blue-400); transition: transform var(--transition); }
+.related-link:hover svg { transform: translateX(4px); }
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">&#10025;</div>
+      North Light<span>&#21271;&#21521;&#20809;</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" data-nav>&#39318;&#39029;</a></li>
+      <li><a href="../services.html" data-nav>&#26381;&#21153;&#39033;&#30446;</a></li>
+      <li><a href="../cases.html" data-nav>&#25104;&#21151;&#26696;&#20363;</a></li>
+      <li><a href="../resources.html" class="active" data-nav>&#36164;&#35759;&#20013;&#24515;</a></li>
+      <li><a href="../about.html" data-nav>&#20851;&#20110;&#25105;&#20204;</a></li>
+      <li><a href="../assessment.html" class="nav-cta">&#20813;&#36153;&#35780;&#20272; &rarr;</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="&#33756;&#21333;">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Banner ── -->
+<section class="page-banner">
+  <div class="page-banner-content">
+    <div class="page-banner-badge">&#30003;&#35831;&#25351;&#21335;</div>
+    <h1>&#38889;&#22269;&#30041;&#23398;&#25991;&#20070;&#20889;&#20316;&#25351;&#21335;</h1>
+    <p class="banner-sub">&#33258;&#25105;&#20171;&#32461;&#20070;&#21644;&#23398;&#20064;&#35745;&#21010;&#20070;&#24590;&#20040;&#20889;</p>
+  </div>
+</section>
+
+<!-- ── Article Content ── -->
+<section class="article-section">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb reveal">
+      <a href="../index.html">&#39318;&#39029;</a> &gt; <a href="../resources.html">&#36164;&#35759;&#20013;&#24515;</a> &gt; <span>&#38889;&#22269;&#30041;&#23398;&#25991;&#20070;&#20889;&#20316;&#25351;&#21335;&#65306;&#33258;&#25105;&#20171;&#32461;&#20070;&#21644;&#23398;&#20064;&#35745;&#21010;&#20070;&#24590;&#20040;&#20889;</span>
+    </div>
+
+    <!-- Cover Image -->
+    <div class="article-cover reveal reveal-delay-1">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>&#23553;&#38754;&#22270;&#29255;</span>
+    </div>
+
+    <!-- Meta -->
+    <div class="article-meta reveal reveal-delay-2">
+      <span class="article-category">&#30003;&#35831;&#25351;&#21335;</span>
+      <span class="article-meta-text"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>2026-07-18</span>
+      <span class="article-meta-text"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>&#38405;&#35835; 9 &#20998;&#38047;</span>
+    </div>
+
+    <!-- Article Body -->
+    <div class="article-body reveal reveal-delay-3">
+
+      <h2>&#25991;&#20070;&#22312;&#30003;&#35831;&#20013;&#20026;&#20160;&#20040;&#22914;&#27492;&#37325;&#35201;</h2>
+      <p>&#22312;&#38889;&#22269;&#22823;&#23398;&#30003;&#35831;&#20013;&#65292;<strong>&#25991;&#20070;&#26159;&#25945;&#25480;&#35780;&#20215;&#20320;&#30340;&#26368;&#37325;&#35201;&#20381;&#25454;&#20043;&#19968;</strong>&#12290;&#24403;&#20320;&#30340;TOPIK&#25104;&#32489;&#12289;GPA&#21644;&#20854;&#20182;&#30003;&#35831;&#32773;&#22788;&#20110;&#30456;&#20284;&#27700;&#24179;&#26102;&#65292;&#25991;&#20070;&#25104;&#20026;&#20102;&#21306;&#20998;&#20320;&#30340;&#20851;&#38190;&#22240;&#32032;&#12290;&#38889;&#22269;&#25945;&#25480;&#26222;&#36941;&#35748;&#20026;&#65292;&#19968;&#20010;&#23398;&#29983;&#30340;<strong>&#25991;&#20070;&#33021;&#30452;&#25509;&#21453;&#26144;&#20854;&#23398;&#20064;&#24577;&#24230;&#21644;&#35802;&#24847;&#31243;&#24230;</strong>&#65292;&#36825;&#27604;&#26631;&#20934;&#21270;&#32771;&#35797;&#25104;&#32489;&#26356;&#33021;&#20307;&#29616;&#19968;&#20010;&#20154;&#30340;&#28508;&#21147;&#12290;</p>
+      <p>&#29305;&#21035;&#26159;&#23545;&#20110;<strong>SKY&#38498;&#26657;</strong>&#65288;&#39318;&#23572;&#22823;&#23398;&#12289;&#39640;&#20029;&#22823;&#23398;&#12289;&#24310;&#19990;&#22823;&#23398;&#65289;&#21644;&#25104;&#22343;&#39302;&#22823;&#23398;&#31561;&#21517;&#26657;&#65292;&#27599;&#24180;&#25910;&#21040;&#30340;&#30003;&#35831;&#25968;&#37327;&#36828;&#36229;&#25307;&#29983;&#21517;&#39069;&#65292;&#22312;&#25104;&#32489;&#36798;&#26631;&#30340;&#22522;&#30784;&#19978;&#65292;<strong>&#25991;&#20070;&#30340;&#36136;&#37327;&#24448;&#24448;&#20915;&#23450;&#20102;&#24405;&#21462;&#19982;&#21542;</strong>&#12290;&#38889;&#22269;&#25945;&#25480;&#21313;&#20998;&#27880;&#37325;&#23398;&#29983;&#30340;&#30495;&#35802;&#24230;&#21644;&#29992;&#24515;&#31243;&#24230;&#8212;&#8212;&#37027;&#20123;&#26126;&#26174;&#22871;&#27169;&#26495;&#12289;&#29031;&#25644;&#32593;&#32476;&#26679;&#26412;&#30340;&#25991;&#20070;&#65292;&#20182;&#20204;&#19968;&#30524;&#23601;&#33021;&#30475;&#20986;&#26469;&#65292;&#32780;&#19988;&#39532;&#19978;&#20250;&#20943;&#20998;&#12290;</p>
+
+      <div class="article-image">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>&#23553;&#38754;&#22270;&#29255;</span>
+      </div>
+
+      <h2>&#33258;&#25105;&#20171;&#32461;&#20070;&#20889;&#20316;&#26694;&#26550;</h2>
+      <p>&#38889;&#22269;&#22823;&#23398;&#30340;&#33258;&#25105;&#20171;&#32461;&#20070;&#36890;&#24120;&#35201;&#27714;&#25353;&#29031;<strong>&#23478;&#24237;&#25104;&#38271;&#32972;&#26223; &rarr; &#20010;&#20154;&#24615;&#26684;&#21697;&#34892; &rarr; &#23398;&#19994;&#25104;&#23601; &rarr; &#35838;&#22806;&#27963;&#21160;&#19982;&#32463;&#21382;</strong>&#30340;&#39034;&#24207;&#26469;&#32452;&#32455;&#20869;&#23481;&#12290;&#39318;&#20808;&#65292;&#22312;&#25551;&#36848;&#23478;&#24237;&#32972;&#26223;&#26102;&#65292;&#19981;&#35201;&#31616;&#21333;&#21015;&#20030;&#23478;&#24237;&#25104;&#21592;&#8212;&#8212;<strong>&#35201;&#26263;&#31034;&#23478;&#24237;&#32463;&#27982;&#24773;&#20917;&#31283;&#23450;</strong>&#65292;&#33021;&#22815;&#25903;&#25345;&#20320;&#22312;&#38889;&#22269;&#23436;&#25104;&#23398;&#19994;&#12290;&#36825;&#19968;&#28857;&#22312;&#21150;&#29702;&#31614;&#35777;&#21644;&#23457;&#26680;&#26102;&#38750;&#24120;&#20851;&#38190;&#12290;</p>
+      <p>&#20854;&#27425;&#65292;<strong>&#20010;&#20154;&#24615;&#26684;&#21644;&#21697;&#34892;</strong>&#37096;&#20998;&#21487;&#20197;&#36890;&#36807;&#21465;&#36848;&#19968;&#20010;&#20855;&#20307;&#30340;&#25925;&#20107;&#26469;&#23637;&#29616;&#65292;&#27604;&#22914;&#26366;&#32463;&#20811;&#26381;&#30340;&#22256;&#38590;&#12289;&#21442;&#19982;&#36807;&#30340;&#24535;&#24895;&#27963;&#21160;&#25110;&#32773;&#22242;&#38431;&#21512;&#20316;&#32463;&#21382;&#12290;&#38889;&#22269;&#25945;&#25480;&#38750;&#24120;&#30475;&#37325;<strong>&#35802;&#23454;&#12289;&#21162;&#21147;&#21644;&#22242;&#38431;&#31934;&#31070;</strong>&#36825;&#20123;&#21697;&#36136;&#12290;&#23398;&#19994;&#25104;&#23601;&#37096;&#20998;&#19981;&#35201;&#31616;&#21333;&#22534;&#30742;&#25104;&#32489;&#21333;&#65292;&#32780;&#26159;&#31361;&#20986;&#21644;&#30003;&#35831;&#19987;&#19994;&#30456;&#20851;&#30340;&#35838;&#31243;&#25104;&#32489;&#21644;&#23398;&#26415;&#20852;&#36259;&#12290;</p>
+      <p>&#26368;&#21518;&#65292;<strong>&#35838;&#22806;&#27963;&#21160;&#21644;&#32463;&#21382;</strong>&#37096;&#20998;&#35201;&#23637;&#29616;&#20320;&#30340;&#32508;&#21512;&#32032;&#36136;&#8212;&#8212;&#26159;&#21542;&#21442;&#21152;&#36807;&#23454;&#20064;&#65311;&#26159;&#21542;&#26377;&#31038;&#22242;&#27963;&#21160;&#32463;&#21382;&#65311;&#26159;&#21542;&#26377;&#33719;&#22870;&#25110;&#35777;&#20070;&#65311;&#35760;&#20303;&#65292;<strong>&#37325;&#36136;&#37327;&#32780;&#38750;&#25968;&#37327;</strong>&#65292;&#25361;&#36873;1-2&#20010;&#26368;&#26377;&#35828;&#26381;&#21147;&#30340;&#32463;&#21382;&#37325;&#28857;&#25551;&#36848;&#21363;&#21487;&#12290;</p>
+
+      <div class="article-image">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>&#23553;&#38754;&#22270;&#29255;</span>
+      </div>
+
+      <h2>&#23398;&#20064;&#35745;&#21010;&#20070;&#20889;&#20316;&#26694;&#26550;</h2>
+      <p>&#23398;&#20064;&#35745;&#21010;&#20070;&#30340;&#20889;&#20316;&#20851;&#38178;&#22312;&#20110;<strong>&#23637;&#29616;&#20320;&#23545;&#30446;&#26631;&#23398;&#26657;&#21644;&#19987;&#19994;&#30340;&#28145;&#20837;&#20102;&#35299;</strong>&#12290;&#19977;&#22823;&#26680;&#24515;&#37096;&#20998;&#20998;&#21035;&#26159;&#65306;</p>
+      <p><strong>&#31532;&#19968;&#37096;&#20998;&#8212;&#8212;&#20026;&#20160;&#20040;&#36873;&#25321;&#36825;&#25152;&#23398;&#26657;&#21644;&#36825;&#20010;&#19987;&#19994;&#65311;</strong>&#19981;&#33021;&#20889;&#8220;&#22240;&#20026;&#36149;&#26657;&#25490;&#21517;&#39640;&#8221;&#36825;&#31181;&#27867;&#27867;&#20043;&#35789;&#65292;&#35201;&#20855;&#20307;&#21040;&#35838;&#31243;&#35774;&#32622;&#12289;&#25945;&#25480;&#30740;&#31350;&#26041;&#21521;&#12289;&#23454;&#39564;&#23460;&#35774;&#22791;&#29978;&#33267;&#26159;&#26657;&#22253;&#25991;&#21270;&#12290;&#20363;&#22914;&#65292;&#30003;&#35831;&#25104;&#22343;&#39302;&#22823;&#23398;&#21322;&#23548;&#20307;&#19987;&#19994;&#30340;&#21516;&#23398;&#65292;&#21487;&#20197;&#25552;&#21040;<strong>&#20116;&#26143;&#20135;&#23398;&#21512;&#20316;&#39033;&#30446;&#21450;&#26657;&#20869;&#20808;&#36827;&#30340;&#21322;&#23548;&#20307;&#28165;&#27905;&#23460;</strong>&#65292;&#23637;&#29616;&#20320;&#30830;&#23454;&#20570;&#36807;&#21151;&#35838;&#12290;</p>
+      <p><strong>&#31532;&#20108;&#37096;&#20998;&#8212;&#8212;&#20837;&#23398;&#21518;&#30340;&#23398;&#20064;&#35745;&#21010;&#12290;</strong>&#25353;&#23398;&#26399;&#25110;&#23398;&#24180;&#32454;&#20998;&#20320;&#30340;&#23398;&#20064;&#30446;&#26631;&#65306;&#31532;&#19968;&#24180;&#23835;&#23454;&#22522;&#30784;&#30693;&#35782;&#65292;&#35748;&#30495;&#20462;&#23436;&#26680;&#24515;&#35838;&#31243;&#65307;&#31532;&#20108;&#24180;&#36827;&#20837;&#23454;&#39564;&#23460;&#21442;&#19982;&#30740;&#31350;&#39033;&#30446;&#65307;&#27605;&#19994;&#21069;&#20105;&#21462;&#23436;&#25104;&#19968;&#31687;&#39640;&#36136;&#37327;&#30340;&#27605;&#19994;&#35770;&#25991;&#31561;&#12290;<strong>&#36234;&#20855;&#20307;&#36234;&#22909;</strong>&#65292;&#35753;&#25945;&#25480;&#30475;&#21040;&#20320;&#26377;&#28165;&#26224;&#30340;&#35268;&#21010;&#32780;&#19981;&#26159;&#19968;&#26102;&#20852;&#36215;&#12290;</p>
+      <p><strong>&#31532;&#19977;&#37096;&#20998;&#8212;&#8212;&#27605;&#19994;&#21518;&#30340;&#32844;&#19994;&#35268;&#21010;&#12290;</strong>&#24314;&#35758;&#23637;&#29616;&#28165;&#26224;&#30340;&#32844;&#19994;&#35268;&#21010;&#65292;&#21487;&#20197;&#25552;&#21040;&#24076;&#26395;&#22312;&#38889;&#22269;&#20225;&#19994;&#31215;&#32047;&#32463;&#39564;&#21518;&#22238;&#22269;&#21457;&#23637;&#65292;&#36825;&#33021;&#20307;&#29616;&#21153;&#23454;&#21644;&#30495;&#35802;&#12290;&#21315;&#19975;&#19981;&#35201;&#34920;&#29616;&#20986;&#8220;&#30041;&#22312;&#38889;&#22269;&#19981;&#22238;&#21435;&#20102;&#8221;&#30340;&#20542;&#21521;&#65288;&#21363;&#20351;&#36825;&#26159;&#20320;&#30340;&#30495;&#23454;&#24819;&#27861;&#65289;&#65292;&#22240;&#20026;&#31614;&#35777;&#23448;&#26356;&#20542;&#21521;&#20110;&#25209;&#20934;&#26377;&#22238;&#22269;&#24847;&#24895;&#30340;&#30003;&#35831;&#32773;&#12290;</p>
+
+      <h2>&#19981;&#21516;&#23398;&#26657;&#30340;&#24046;&#24322;&#21270;&#31574;&#30053;</h2>
+      <p>&#38889;&#22269;&#21508;&#22823;&#23398;&#30340;&#25991;&#20070;&#35201;&#27714;&#24182;&#19981;&#32479;&#19968;&#12290;<strong>SKY&#38498;&#26657;</strong>&#30340;&#33258;&#25105;&#20171;&#32461;&#20070;&#36890;&#24120;&#27809;&#26377;&#22266;&#23450;&#26684;&#24335;&#65292;&#20294;&#23383;&#25968;&#38480;&#21046;&#27604;&#36739;&#20005;&#26684;&#65288;&#19968;&#33324;800-1500&#23383;&#65289;&#65292;&#35201;&#27714;&#22312;&#26377;&#38480;&#31687;&#24133;&#20869;&#23637;&#29616;&#26368;&#22823;&#30340;&#35828;&#26381;&#21147;&#12290;<strong>&#22320;&#26041;&#22269;&#31435;&#22823;&#23398;</strong>&#22914;&#37329;&#23665;&#22823;&#23398;&#12289;&#20840;&#21271;&#22823;&#23398;&#31561;&#65292;&#25991;&#20070;&#26684;&#24335;&#30456;&#23545;&#28789;&#27963;&#65292;&#20294;&#26356;&#30475;&#37325;&#23398;&#29983;&#30340;&#23398;&#26415;&#28508;&#21147;&#21644;&#30740;&#31350;&#35745;&#21010;&#65292;&#23588;&#20854;&#26159;&#30003;&#35831;&#30805;&#21338;&#30340;&#21516;&#23398;&#12290;</p>
+      <p>&#33267;&#20110;<strong>&#19987;&#38376;&#22823;&#23398;</strong>&#22914;&#24344;&#30410;&#22823;&#23398;&#12289;&#22269;&#27665;&#22823;&#23398;&#31561;&#65292;&#23427;&#20204;&#30340;&#25991;&#20070;&#26356;&#21152;&#27880;&#37325;&#19987;&#19994;&#23454;&#36341;&#21644;&#21019;&#20316;&#32463;&#21382;&#65292;&#25991;&#31185;&#26684;&#24335;&#27604;&#36739;&#22810;&#26679;&#21270;&#65292;&#21487;&#20197;&#36866;&#24403;&#23637;&#29616;&#20010;&#24615;&#12290;&#21073;&#26725;&#22823;&#23398;&#12289;&#24310;&#19990;&#22823;&#23398;&#31561;&#26657;&#30340;&#21830;&#31185;&#65292;&#23398;&#20064;&#35745;&#21010;&#20070;&#37324;&#24314;&#35758;&#21152;&#20837;<strong>&#23545;&#20855;&#20307;&#35838;&#31243;&#30340;&#35780;&#20215;&#21644;&#26399;&#26395;</strong>&#65292;&#20307;&#29616;&#20320;&#23545;&#35813;&#39033;&#30446;&#30340;&#29420;&#29305;&#29702;&#35299;&#12290;</p>
+      <p><strong>&#24635;&#20043;&#65292;&#24517;&#39035;&#38024;&#23545;&#27599;&#25152;&#23398;&#26657;&#30340;&#20855;&#20307;&#35201;&#27714;&#23450;&#21046;&#25991;&#20070;</strong>&#65292;&#21315;&#19975;&#19981;&#35201;&#29992;&#19968;&#31687;&#25991;&#20070;&#21435;&#30003;&#35831;&#25152;&#26377;&#23398;&#26657;&#12290;&#24314;&#35758;&#33267;&#23569;&#30041;&#20986;4-6&#21608;&#26102;&#38388;&#19987;&#38376;&#30740;&#31350;&#27599;&#25152;&#30446;&#26631;&#38498;&#26657;&#30340;&#32593;&#31449;&#21644;&#25307;&#29983;&#31616;&#31456;&#65292;&#25214;&#21040;&#21487;&#20197;&#20889;&#36827;&#25991;&#20070;&#30340;&#8220;&#29420;&#23478;&#20869;&#23481;&#8221;&#12290;</p>
+
+      <div class="article-image">
+        <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        <span>&#23553;&#38754;&#22270;&#29255;</span>
+      </div>
+
+      <h2>&#24120;&#35265;&#38169;&#35823;&#19982;&#36991;&#20813;&#26041;&#27861;</h2>
+      <p>&#25991;&#20070;&#20889;&#20316;&#20013;&#26368;&#24120;&#35265;&#30340;&#20116;&#22823;&#38169;&#35823;&#65306;</p>
+      <p><strong>&#31532;&#19968;&#65292;&#22871;&#27169;&#26495;&#12290;</strong>&#24456;&#22810;&#30041;&#23398;&#26426;&#26500;&#25552;&#20379;&#8220;&#19975;&#33021;&#25991;&#20070;&#27169;&#26495;&#8221;&#65292;&#20294;&#23454;&#38469;&#19978;&#38889;&#22269;&#25945;&#25480;&#23545;&#27169;&#26495;&#21270;&#30340;&#25991;&#20070;&#38750;&#24120;&#25935;&#24863;&#65292;&#19968;&#30524;&#23601;&#33021;&#30475;&#20986;&#26469;&#12290;&#37027;&#20123;&#24320;&#22836;&#37117;&#26159;&#8220;&#25105;&#33258;&#24188;&#23601;&#23545;XX&#20135;&#29983;&#27987;&#21402;&#20852;&#36259;&#8221;&#30340;&#25991;&#20070;&#65292;&#21482;&#20250;&#35753;&#25945;&#25480;&#35273;&#24471;&#20320;&#19981;&#22815;&#29992;&#24515;&#12290;</p>
+      <p><strong>&#31532;&#20108;&#65292;&#29031;&#25644;&#32593;&#32476;&#26679;&#26412;&#12290;</strong>&#22312;&#38889;&#22269;&#65292;&#23398;&#26415;&#35802;&#20449;&#26159;&#26497;&#20026;&#20005;&#32899;&#30340;&#38382;&#39064;&#12290;&#21363;&#20351;&#21482;&#26159;&#25220;&#34989;&#20102;&#19968;&#23567;&#27573;&#35805;&#65292;&#20063;&#21487;&#33021;&#34987;&#24403;&#20316;&#20316;&#24330;&#22788;&#29702;&#65292;&#30452;&#25509;&#23548;&#33268;&#30003;&#35831;&#22833;&#36133;&#12290;</p>
+      <p><strong>&#31532;&#19977;&#65292;&#22840;&#22823;&#20854;&#35789;&#12290;</strong>&#19968;&#20123;&#21516;&#23398;&#25226;&#33258;&#24049;&#20889;&#25104;&#8220;&#20840;&#33021;&#22411;&#20154;&#25165;&#8221;&#65292;&#20294;&#27809;&#26377;&#20855;&#20307;&#20107;&#20363;&#25903;&#25745;&#65292;&#21453;&#32780;&#26174;&#24471;&#31354;&#27934;&#12290;<strong>&#26377;&#35828;&#26381;&#21147;&#30340;&#19968;&#20010;&#23567;&#25925;&#20107;&#65292;&#36828;&#27604;&#19968;&#30334;&#20010;&#31354;&#27934;&#30340;&#24418;&#23481;&#35789;&#26356;&#26377;&#21147;&#37327;</strong>&#12290;</p>
+      <p><strong>&#31532;&#22235;&#65292;&#24573;&#30053;&#26684;&#24335;&#35201;&#27714;&#12290;</strong>&#26377;&#30340;&#23398;&#26657;&#35201;&#27714;&#25991;&#20070;&#21407;&#31295;&#19968;&#36148;&#19981;&#33021;&#36229;&#36807;&#22810;&#23569;&#23383;&#65292;&#26377;&#30340;&#35201;&#27714;&#29992;&#29305;&#23450;&#23383;&#20307;&#21644;&#23383;&#21495;&#65292;&#36825;&#20123;&#32454;&#33410;&#21453;&#26144;&#20320;&#30340;&#35748;&#30495;&#31243;&#24230;&#12290;</p>
+      <p><strong>&#31532;&#20116;&#65292;&#24573;&#30053;&#35821;&#35328;&#33021;&#21147;&#35828;&#26126;&#12290;</strong>&#22914;&#26524;&#20320;&#30340;&#38889;&#35821;&#27700;&#24179;&#19981;&#39640;&#65292;&#25991;&#20070;&#21487;&#20197;&#35831;&#32769;&#24072;&#24110;&#24537;&#20462;&#25913;&#65292;&#20294;<strong>&#35201;&#22312;&#25991;&#20070;&#20013;&#22374;&#35802;&#35828;&#26126;&#8220;&#26412;&#25991;&#20070;&#22312;&#32769;&#24072;&#25351;&#23548;&#19979;&#23436;&#25104;&#8221;</strong>&#12290;&#36825;&#31181;&#35802;&#23454;&#30340;&#24577;&#24230;&#65292;&#38889;&#22269;&#25945;&#25480;&#21453;&#32780;&#20250;&#35273;&#24471;&#20320;&#35802;&#24691;&#65292;&#21360;&#35937;&#20998;&#21453;&#32780;&#26356;&#22909;&#12290;</p>
+
+    </div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner reveal">
+      <h3>&#24819;&#20102;&#35299;&#26356;&#22810;&#65311;</h3>
+      <p>&#31435;&#21363;&#20813;&#36153;&#35780;&#20272;&#20320;&#30340;&#30041;&#23398;&#21487;&#33021;&#24615;&#65292;&#19987;&#19994;&#39038;&#38382;&#20026;&#20320;&#37327;&#36523;&#23450;&#21046;&#30041;&#23398;&#26041;&#26696;</p>
+      <a href="../assessment.html" class="cta-btn">&#20813;&#36153;&#35780;&#20272; &rarr;</a>
+    </div>
+
+    <!-- Related Articles -->
+    <div class="related-section reveal">
+      <h3>&#30456;&#20851;&#25991;&#31456;</h3>
+      <div class="related-list">
+        <a href="interview-tips.html" class="related-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          &#38889;&#22269;&#30041;&#23398;&#38754;&#35797;&#24120;&#35265;&#38382;&#39064;+&#22238;&#31572;&#24605;&#36335;&#20840;&#25972;&#29702;
+        </a>
+        <a href="timeline.html" class="related-link">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          2026&#38889;&#22269;&#30041;&#23398;&#30003;&#35831;&#26102;&#38388;&#32447;&#65306;&#26412;&#31185;&#21644;&#30740;&#31350;&#29983;&#20840;&#35268;&#21010;
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light &#21271;&#21521;&#20809;</div>
+        <p class="footer-tagline">&#35753;&#25105;&#20204;&#25104;&#20026;&#24744;&#30041;&#23398;&#36335;&#19978;&#26368;&#26126;&#20142;&#30340;&#25351;&#24341;&#20809;&#26463;&#12290;<br>&#38889;&#22269;&#30041;&#23398;&#65292;&#20174;&#36825;&#37324;&#24320;&#22987;&#12290;</p>
+      </div>
+      <div>
+        <h4>&#24555;&#36895;&#38142;&#25509;</h4>
+        <ul>
+          <li><a href="../index.html">&#39318;&#39029;</a></li>
+          <li><a href="../services.html">&#26381;&#21153;&#39033;&#30446;</a></li>
+          <li><a href="../cases.html">&#25104;&#21151;&#26696;&#20363;</a></li>
+          <li><a href="../assessment.html">&#20813;&#36153;&#35780;&#20272;</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>&#32852;&#31995;&#26041;&#24335;</h4>
+        <ul>
+          <li><a href="#">&#24494;&#20449;&#65306;NorthLight_Korea</a></li>
+          <li><a href="#">&#37038;&#31665;&#65306;info@northlight.kr</a></li>
+          <li><a href="#">&#22320;&#22336;&#65306;&#39318;&#23572;&#24066;&#40635;&#28006;&#21306;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 North Light &#21271;&#21521;&#20809;. All rights reserved.</span>
+      <span>&#19987;&#27880;&#38889;&#22269;&#30041;&#23398;&#21672;&#35810;</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

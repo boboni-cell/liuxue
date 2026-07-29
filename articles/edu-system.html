@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>韩国教育制度全解析：从语学院到博士你需要知道的一切 — North Light 北向光</title>
+<meta name="description" content="全面解析韩国高等教育体系，覆盖语学院、本科、硕士、博士各阶段，包含入学时间、语言要求、申请策略。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.article-container { width: 100%; max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav.scrolled { padding: 10px 0; }
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Breadcrumb ── */
+.breadcrumb { padding: 100px 0 0; background: var(--gray-50); }
+.breadcrumb-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.breadcrumb-inner a, .breadcrumb-inner span { font-size: 13px; color: var(--gray-400); text-decoration: none; }
+.breadcrumb-inner a:hover { color: var(--amber-500); }
+
+/* ── Cover Image ── */
+.article-cover {
+  width: 100%; height: 400px;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 30%, var(--navy-600) 60%, var(--blue-500) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.article-cover::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(232,169,64,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(61,122,204,0.1) 0%, transparent 50%),
+              linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.cover-icon { position: relative; z-index: 1; opacity: 0.3; }
+.cover-icon svg { width: 80px; height: 80px; stroke: rgba(255,255,255,0.5); }
+@media (max-width: 640px) { .article-cover { height: 240px; } .cover-icon svg { width: 56px; height: 56px; } }
+
+/* ── Article Header ── */
+.article-header { padding: 32px 0 0; }
+.article-header h1 { font-size: 32px; font-weight: 800; color: var(--gray-800); line-height: 1.25; letter-spacing: -0.02em; margin-bottom: 16px; }
+@media (max-width: 640px) { .article-header h1 { font-size: 24px; } }
+
+/* ── Article Meta ── */
+.article-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 0 0 24px; border-bottom: 1px solid var(--gray-200); margin-bottom: 32px; }
+.article-meta .category-badge { display: inline-flex; align-items: center; padding: 5px 14px; background: var(--amber-100); color: var(--amber-500); border-radius: 100px; font-size: 12px; font-weight: 700; }
+.article-meta .meta-text { font-size: 13px; color: var(--gray-400); display: flex; align-items: center; gap: 4px; }
+.article-meta .meta-text svg { flex-shrink: 0; }
+
+/* ── Article Body ── */
+.article-body h2 { font-size: 24px; font-weight: 700; color: var(--gray-800); margin: 48px 0 16px; line-height: 1.3; }
+.article-body h2:first-child { margin-top: 0; }
+.article-body p { font-size: 16px; color: var(--gray-600); line-height: 1.9; margin-bottom: 20px; }
+.article-body strong { color: var(--gray-800); font-weight: 700; }
+.article-body strong.highlight { color: var(--amber-500); }
+.article-body .img-placeholder {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 240px; position: relative; overflow: hidden;
+  margin: 32px 0;
+}
+.article-body .img-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.article-body .img-placeholder svg { width: 48px; height: 48px; opacity: 0.5; position: relative; z-index: 1; }
+.article-body .img-placeholder span { font-size: 13px; margin-top: 8px; position: relative; z-index: 1; }
+
+/* ── CTA Banner ── */
+.cta-banner {
+  margin: 56px 0 48px;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+  border-radius: var(--radius-lg); padding: 40px 32px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(232,169,64,0.1) 0%, transparent 50%);
+}
+.cta-banner h3 { font-size: 20px; color: var(--white); font-weight: 700; margin-bottom: 8px; position: relative; z-index: 1; }
+.cta-banner p { font-size: 14px; color: var(--gray-400); margin-bottom: 20px; position: relative; z-index: 1; }
+.cta-banner a {
+  display: inline-block; padding: 14px 32px;
+  background: linear-gradient(135deg, var(--amber-500), var(--amber-400));
+  color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 15px;
+  text-decoration: none; transition: all var(--transition);
+  box-shadow: 0 4px 16px rgba(212,148,43,0.3); position: relative; z-index: 1;
+}
+.cta-banner a:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,148,43,0.4); }
+
+/* ── Related Articles ── */
+.related-section { padding: 48px 0 80px; border-top: 1px solid var(--gray-200); }
+.related-section h3 { font-size: 20px; font-weight: 700; color: var(--gray-800); margin-bottom: 24px; }
+.related-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+@media (min-width: 640px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+.related-card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--gray-50); border-radius: var(--radius); padding: 24px;
+  border: 1px solid var(--gray-200); transition: all var(--transition);
+}
+.related-card:hover { border-color: var(--blue-300); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+.related-card h4 { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 6px; transition: color var(--transition); }
+.related-card:hover h4 { color: var(--blue-500); }
+.related-card .related-date { font-size: 12px; color: var(--gray-400); }
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-icon">✦</div>
+      North Light<span>北向光</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html" data-nav>首页</a></li>
+      <li><a href="../services.html" data-nav>服务项目</a></li>
+      <li><a href="../cases.html" data-nav>成功案例</a></li>
+      <li><a href="../resources.html" class="active" data-nav>资讯中心</a></li>
+      <li><a href="../about.html" data-nav>关于我们</a></li>
+      <li><a href="../assessment.html" class="nav-cta">免费评估 →</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Breadcrumb ── -->
+<div class="breadcrumb reveal">
+  <div class="breadcrumb-inner">
+    <a href="../index.html">首页</a> &gt; <a href="../resources.html">资讯中心</a> &gt; 韩国教育制度全解析：从语学院到博士你需要知道的一切
+  </div>
+</div>
+
+<!-- ── Cover Image ── -->
+<div class="article-cover reveal">
+  <div class="cover-icon">
+    <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+  </div>
+</div>
+
+<!-- ── Article Content ── -->
+<div class="article-container">
+  <div class="article-header reveal reveal-delay-1">
+    <h1>韩国教育制度全解析：从语学院到博士你需要知道的一切</h1>
+  </div>
+  <div class="article-meta reveal reveal-delay-1">
+    <span class="category-badge">留学百科</span>
+    <span class="meta-text">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      2026-07-20
+    </span>
+    <span class="meta-text">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      阅读 10 分钟
+    </span>
+  </div>
+
+  <div class="article-body reveal reveal-delay-2">
+    <p>韩国的高等教育体系在亚洲乃至全球都享有极高的声誉。2026年，韩国共有<strong>42所大学入选QS世界大学排名</strong>，其中<strong>首尔大学、延世大学、高丽大学</strong>三所"SKY"名校全部进入全球前70。对于计划赴韩留学的中国学生来说，理解韩国的教育制度是制定留学规划的第一步。本文将从院校分类、入学时间、语言要求到各学历阶段路径，逐一为你拆解。</p>
+
+    <h2>韩国高等教育体系概览</h2>
+    <p>韩国的高等教育体系主要分为三大类：<strong>综合性大学、专业性大学和职业院校</strong>。综合性大学（如首尔大学、延世大学、高丽大学）学术研究实力最为雄厚，涵盖人文、社科、理工、医学等几乎所有学科门类，是大多数留学生的首选。</p>
+    <p>专业性大学则聚焦特定领域——<strong>浦项科技大学（POSTECH）和韩国科学技术院（KAIST）</strong>在理工科领域全球领先，中央大学在表演艺术和传媒领域独树一帜，弘益大学则是韩国设计与美术的顶尖学府。职业院校（如专科大学）侧重技能培养，学制通常为2-3年，适合希望快速就业的学生。</p>
+    <p>在众多高校中，<strong class="highlight">SKY三校</strong>是韩国高等教育的皇冠明珠：<strong>首尔大学（Seoul National University）</strong>在2026年QS排名中位列全球第38位，是韩国唯一进入全球前40的大学；<strong>延世大学（Yonsei University）</strong>首次跻身全球前50，排名第50位；<strong>高丽大学（Korea University）</strong>排名全球第61位，较去年上升6位。三校在法学、商学、医学、工程等领域的毕业生在韩国就业市场具有无可比拟的优势。</p>
+
+    <div class="img-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>韩国高等教育体系分类示意图</span>
+    </div>
+
+    <h2>入学时间与申请周期</h2>
+    <p>韩国大学每年有<strong>两次常规入学时间</strong>：<strong>3月（春季学期）和9月（秋季学期）</strong>。与中国不同的是，3月是韩国的主入学季，约60%的新生在这一时期入学。9月入学的名额相对较少，但国际学生的竞争也相应较低，反而可能成为申请的窗口期。</p>
+    <p>申请周期方面，3月入学的网申通常在<strong>前一年的9月至11月</strong>开放，9月入学的网申则在<strong>当年的3月至5月</strong>进行。以3月入学为例，最晚需要在前一年7-8月开始准备语言成绩和文书材料。此外，<strong>学历认证（海牙认证或领事认证）通常需要1-2个月</strong>，务必提前规划。</p>
+    <p>对于<strong>语学院（韩国语学堂）</strong>，情况则完全不同。绝大多数韩国大学附属语学院实行<strong>全年滚动招生</strong>，每年开设4个学期（3月、6月、9月、12月），部分学校甚至开设6个学期。语学院的申请周期较短，通常提前2-3个月准备即可，且录取门槛较低——仅需高中毕业证和基础资金证明。</p>
+
+    <div class="img-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>韩国大学入学时间与申请周期时间线</span>
+    </div>
+
+    <h2>语言要求详解</h2>
+    <p>赴韩留学主要有<strong>两条语言路径</strong>：<strong>韩语授课</strong>和<strong>英语授课</strong>。绝大多数本科和研究生课程以韩语授课为主，要求学生提供<strong>TOPIK（韩国语能力考试）成绩</strong>。</p>
+    <p>本科阶段的语言要求因学校和专业而异：<strong>地方国立大学和地方私立大学</strong>通常要求TOPIK 3级即可入学；<strong>首尔圈主要大学</strong>（如中央大学、东国大学、建国大学、国民大学等）一般要求TOPIK 4级；<strong>SKY院校</strong>的竞争最为激烈，建议达到TOPIK 5级甚至6级。值得一提的是，部分大学设有<strong>"条件录取"制度</strong>——即使TOPIK成绩未达标，也可以先被录取，在校内语学院完成规定级别的韩语课程后再进入专业课学习。</p>
+    <p>硕博阶段的要求更高：<strong>地方院校文科</strong>通常要求TOPIK 4级，<strong>首尔圈名校文科</strong>建议TOPIK 5-6级，理工科和艺术类专业的要求相对宽松，部分院校接受TOPIK 3-4级。此外，<strong>英语授课课程（GSIS项目）</strong>是另一条重要路径：首尔大学、延世大学、高丽大学、西江大学等均设有全英文授课的国际研究生项目，要求提供托福（通常90分以上）或雅思（通常6.5分以上）成绩，无需TOPIK成绩。但需要注意的是，在韩国生活仍需要基本韩语能力，建议同步学习韩语以达到日常交流水平。</p>
+
+    <div class="img-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>TOPIK等级与各阶段入学要求对照表</span>
+    </div>
+
+    <h2>学历阶段与对应路径</h2>
+    <p><strong>本科阶段（学士学位）</strong>：韩国本科通常为<strong>4年制</strong>（医学、建筑学等专业为5-6年）。申请者需具备高中毕业学历，提交高中成绩单、TOPIK成绩、自我介绍书、学习计划书等材料。中国学生通常先入读<strong>语学院</strong>（6个月至1年），取得TOPIK 4级以上成绩后再申请本科。部分大学设有<strong>"本科预录取"</strong>通道——在语学院入学时即获得本科有条件录取，语言达标后直接进入专业课。</p>
+    <p><strong>硕士阶段（硕士学位）</strong>：韩国硕士通常为<strong>2年制</strong>（4个学期）。申请者需具备学士学位，且本科GPA通常不低于3.0/4.0（部分SKY院校要求3.3以上）。除TOPIK成绩外，<strong>研究计划书（Statement of Purpose）</strong>是评审的核心材料——教授会重点考察研究方向的匹配度和学术潜力。建议提前<strong>套磁联系目标导师</strong>，尤其是理工科和人文社科的博士生申请人，导师的接收意向对录取结果影响极大。</p>
+    <p><strong>博士阶段（博士学位）</strong>：韩国博士通常为<strong>3-5年制</strong>，前两年为课程阶段，后1-3年为论文研究和撰写阶段。韩国博士申请竞争激烈，尤其在SKY院校——<strong>首尔大学博士录取率通常在10%-15%之间</strong>。申请人除具备硕士学位和优秀的学术背景外，通常需要已有1-2篇学术发表、明确的研究方向和导师的正式同意接收函。韩国博士项目的核心优势在于<strong>奖学金覆盖率极高</strong>——大多数理工科博士生可获得全额奖学金（学费全免+每月80-150万韩元生活补助），人文社科博士生也有较高几率获得半额到全额不等的奖学金。</p>
+    <p>此外，2026年韩国政府推出<strong>"Study Korea 300K"计划</strong>，目标到2027年吸引30万国际学生。GKS（Global Korea Scholarship）奖学金新增<strong>"数字人才专项"</strong>，面向半导体、人工智能、数据科学等前沿领域的硕博申请人，提供全额学费、往返机票、每月约100万韩元生活费和韩语培训费，是性价比极高的留学选择。</p>
+
+    <div class="img-placeholder">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      <span>本科-硕士-博士各阶段学历路径全览</span>
+    </div>
+
+    <p>无论你处于哪个学历阶段，选择韩国留学都是明智的决策。韩国高等教育的<strong>国际认可度持续上升</strong>，政府与企业的奖学金体系日益完善，毕业后就业签证政策也在不断放宽。关键是提前做好信息功课，结合自身条件选择最适合的院校和专业路径。</p>
+  </div>
+
+  <!-- ── CTA Banner ── -->
+  <div class="cta-banner reveal">
+    <h3>想了解更多？</h3>
+    <p>立即免费评估你的留学可能性，获取专属申请规划方案</p>
+    <a href="../assessment.html">免费评估 →</a>
+  </div>
+</div>
+
+<!-- ── Related Articles ── -->
+<div class="article-container">
+  <div class="related-section reveal">
+    <h3>相关文章</h3>
+    <div class="related-grid">
+      <a href="qs-ranking.html" class="related-card">
+        <h4>2026年韩国大学QS排名速览：SKY三校全部进入全球前70</h4>
+        <span class="related-date">2026-07-15</span>
+      </a>
+      <a href="cost-guide.html" class="related-card">
+        <h4>韩国留学费用全攻略：学费、生活费、打工收入一文搞懂</h4>
+        <span class="related-date">2026-07-10</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light 北向光</div>
+        <p class="footer-tagline">让我们成为您留学路上最明亮的指引光束。<br>韩国留学，从这里开始。</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="../index.html">首页</a></li>
+          <li><a href="../services.html">服务项目</a></li>
+          <li><a href="../cases.html">成功案例</a></li>
+          <li><a href="../assessment.html">免费评估</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="#">微信：NorthLight_Korea</a></li>
+          <li><a href="#">邮箱：info@northlight.kr</a></li>
+          <li><a href="#">地址：首尔市麻浦区</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 North Light 北向光. All rights reserved.</span>
+      <span>专注韩国留学咨询</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
