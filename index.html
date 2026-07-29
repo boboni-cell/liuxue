@@ -72,6 +72,7 @@ body {
 .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
 .nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
 .nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
 .nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
 .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
 .nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
@@ -288,11 +289,11 @@ body {
       North Light<span>北向光</span>
     </a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home" data-nav>首页</a></li>
-      <li><a href="#services" data-nav>服务项目</a></li>
-      <li><a href="#stories" data-nav>成功案例</a></li>
-      <li><a href="#resources" data-nav>资讯中心</a></li>
-      <li><a href="#about" data-nav>关于我们</a></li>
+      <li><a href="index.html" class="active" data-nav>首页</a></li>
+      <li><a href="services.html" data-nav>服务项目</a></li>
+      <li><a href="cases.html" data-nav>成功案例</a></li>
+      <li><a href="resources.html" data-nav>资讯中心</a></li>
+      <li><a href="about.html" data-nav>关于我们</a></li>
       <li><a href="assessment.html" class="nav-cta">免费评估 →</a></li>
     </ul>
     <button class="nav-toggle" id="navToggle" aria-label="菜单">
@@ -363,6 +364,9 @@ body {
         </div>
       </div>
     </div>
+    <div class="stories-more reveal">
+      <a href="services.html" class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);display:inline-flex;align-items:center;gap:8px;">查看全部服务 →</a>
+    </div>
   </div>
 </section>
 
@@ -376,7 +380,7 @@ body {
     </div>
     <div class="stories-grid" id="storiesGrid"></div>
     <div class="stories-more reveal">
-      <button class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);" id="loadMoreStories">查看更多案例 →</button>
+      <a href="cases.html" class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);display:inline-flex;align-items:center;gap:8px;">查看全部案例 →</a>
     </div>
   </div>
 </section>
@@ -395,6 +399,9 @@ body {
       <button class="resource-tab" data-tab="news">最新动态</button>
     </div>
     <div class="resources-grid" id="resourcesGrid"></div>
+    <div class="stories-more reveal">
+      <a href="resources.html" class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);display:inline-flex;align-items:center;gap:8px;">查看全部资讯 →</a>
+    </div>
   </div>
 </section>
 
@@ -452,6 +459,9 @@ body {
         <span>团队照片</span>
       </div>
     </div>
+    <div class="stories-more reveal">
+      <a href="about.html" class="btn-outline" style="color:var(--navy-700);border-color:var(--gray-300);display:inline-flex;align-items:center;gap:8px;">了解更多 →</a>
+    </div>
   </div>
 </section>
 
@@ -466,9 +476,9 @@ body {
       <div>
         <h4>快速链接</h4>
         <ul>
-          <li><a href="#home">首页</a></li>
-          <li><a href="#services">服务项目</a></li>
-          <li><a href="#stories">成功案例</a></li>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="services.html">服务项目</a></li>
+          <li><a href="cases.html">成功案例</a></li>
           <li><a href="assessment.html">免费评估</a></li>
         </ul>
       </div>
@@ -560,7 +570,7 @@ function renderStories(count) {
 }
 renderStories(storiesShown);
 
-document.getElementById('loadMoreStories').addEventListener('click', () => {
+document.getElementById('loadMoreStories')?.addEventListener('click', () => {
   storiesShown = storiesShown >= STORIES.length ? 3 : STORIES.length;
   renderStories(storiesShown);
   const btn = document.getElementById('loadMoreStories');

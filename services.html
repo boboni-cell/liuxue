@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服务项目 — North Light 北向光 韩国留学咨询</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav.scrolled {
+  padding: 10px 0;
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Section Titles ── */
+.section-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber-500); margin-bottom: 12px; }
+.section-title { font-size: 28px; font-weight: 800; color: var(--gray-800); margin-bottom: 8px; letter-spacing: -0.02em; }
+.section-sub { font-size: 16px; color: var(--gray-400); font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 16px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+@media (min-width: 768px) { .section-title { font-size: 36px; } }
+
+/* ── Page Banner ── */
+.page-banner {
+  height: 240px;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 60%, var(--navy-600) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding-top: 72px;
+}
+.page-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(232,169,64,0.06) 0%, transparent 50%),
+              radial-gradient(circle at 70% 50%, rgba(61,122,204,0.08) 0%, transparent 50%);
+}
+.page-banner-content { position: relative; z-index: 1; }
+.page-banner h1 { font-size: 36px; font-weight: 800; color: var(--white); margin-bottom: 8px; letter-spacing: -0.02em; }
+.page-banner p { font-size: 16px; color: var(--gray-300); font-family: 'Inter', sans-serif; }
+@media (max-width: 640px) {
+  .page-banner { height: 200px; }
+  .page-banner h1 { font-size: 28px; }
+}
+
+/* ── Image Placeholder (shared) ── */
+.img-placeholder {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 200px; position: relative; overflow: hidden;
+}
+.img-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.img-placeholder svg { width: 40px; height: 40px; opacity: 0.5; position: relative; z-index: 1; }
+.img-placeholder span { font-size: 12px; margin-top: 8px; position: relative; z-index: 1; }
+
+.img-placeholder-large {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 300px; position: relative; overflow: hidden;
+}
+.img-placeholder-large::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+}
+.img-placeholder-large svg { width: 56px; height: 56px; opacity: 0.45; position: relative; z-index: 1; }
+.img-placeholder-large span { font-size: 14px; margin-top: 12px; position: relative; z-index: 1; }
+
+/* ── Sections ── */
+.section { padding: 80px 0; }
+.section-alt { background: var(--gray-50); }
+@media (min-width: 768px) { .section { padding: 120px 0; } }
+
+/* ── Service Section Divider ── */
+.service-section {
+  margin-bottom: 64px;
+}
+.service-section:last-child {
+  margin-bottom: 0;
+}
+.service-section-title {
+  font-size: 24px; font-weight: 800; color: var(--gray-800);
+  margin-bottom: 8px; letter-spacing: -0.02em;
+  display: flex; align-items: center; gap: 12px;
+}
+.service-section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px; height: 28px;
+  background: linear-gradient(180deg, var(--amber-400), var(--blue-400));
+  border-radius: 2px;
+}
+.service-section-desc {
+  font-size: 14px; color: var(--gray-400); margin-bottom: 36px; padding-left: 20px;
+}
+
+/* ── Detailed Service Cards ── */
+.detail-services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+@media (min-width: 768px) {
+  .detail-services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .detail-services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.detail-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+  transition: all var(--transition);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.detail-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 56px rgba(0,0,0,0.1);
+  border-color: transparent;
+}
+.detail-card-body {
+  padding: 28px;
+  flex: 1;
+  display: flex; flex-direction: column;
+}
+.detail-card h3 {
+  font-size: 20px; font-weight: 700; color: var(--gray-800);
+  margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.detail-card .card-desc {
+  font-size: 14px; color: var(--gray-500); line-height: 1.8;
+  margin-bottom: 20px; flex: 1;
+}
+.detail-card .card-meta-section {
+  margin-bottom: 14px;
+}
+.detail-card .card-meta-label {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--amber-500);
+  margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+}
+.detail-card .card-meta-label::after {
+  content: '';
+  display: block; flex: 1; height: 1px;
+  background: var(--gray-200);
+}
+.detail-card .card-tags {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.detail-card .card-tag {
+  font-size: 12px; padding: 5px 14px;
+  background: var(--gray-50); border-radius: 100px;
+  color: var(--gray-600); font-weight: 500;
+  border: 1px solid var(--gray-200);
+}
+.detail-card .card-steps {
+  list-style: none; padding: 0;
+}
+.detail-card .card-steps li {
+  font-size: 13px; color: var(--gray-600); padding: 6px 0;
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px dashed var(--gray-100);
+}
+.detail-card .card-steps li:last-child { border-bottom: none; }
+.detail-card .card-step-num {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-600), var(--blue-500));
+  color: var(--white); font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── CTA Banner ── */
+.cta-banner {
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 60%, var(--navy-600) 100%);
+  position: relative; overflow: hidden;
+  padding: 80px 24px; text-align: center;
+}
+.cta-banner::before {
+  content: ''; position: absolute; top: -30%; left: -30%; width: 160%; height: 160%;
+  background: radial-gradient(circle at 40% 50%, rgba(232,169,64,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 60% 50%, rgba(61,122,204,0.08) 0%, transparent 50%);
+}
+.cta-banner-content { position: relative; z-index: 1; }
+.cta-banner h2 {
+  font-size: 30px; font-weight: 800; color: var(--white);
+  margin-bottom: 12px; letter-spacing: -0.02em;
+}
+.cta-banner p {
+  font-size: 16px; color: var(--gray-300); margin-bottom: 36px;
+}
+.cta-banner .btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 40px;
+  background: linear-gradient(135deg, var(--amber-500), var(--amber-400));
+  color: var(--navy-900); border-radius: 100px;
+  font-weight: 700; font-size: 16px; text-decoration: none;
+  transition: all var(--transition);
+  box-shadow: 0 4px 24px rgba(212,148,43,0.3);
+}
+.cta-banner .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212,148,43,0.4);
+}
+@media (max-width: 640px) {
+  .cta-banner h2 { font-size: 24px; }
+  .cta-banner { padding: 56px 24px; }
+}
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+.reveal-delay-7 { transition-delay: 0.7s; }
+.reveal-delay-8 { transition-delay: 0.8s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">&#10022;</div>
+      North Light<span>&#21271;&#21521;&#20809;</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-nav>首页</a></li>
+      <li><a href="services.html" class="active" data-nav>服务项目</a></li>
+      <li><a href="cases.html" data-nav>成功案例</a></li>
+      <li><a href="resources.html" data-nav>资讯中心</a></li>
+      <li><a href="about.html" data-nav>关于我们</a></li>
+      <li><a href="assessment.html" class="nav-cta">免费评估 →</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Banner ── -->
+<section class="page-banner">
+  <div class="page-banner-content reveal">
+    <h1>我们的服务</h1>
+    <p>Our Services</p>
+  </div>
+</section>
+
+<!-- ── Services Detail ── -->
+<section class="section" id="services-detail">
+  <div class="container">
+
+    <!-- ===== 留学规划 ===== -->
+    <div class="service-section reveal">
+      <h2 class="service-section-title">留学规划</h2>
+      <p class="service-section-desc">从本科到博士，我们提供覆盖全学术阶段的精准择校与申请策略规划</p>
+      <div class="detail-services-grid">
+
+        <!-- 本科申请 -->
+        <div class="detail-card reveal reveal-delay-1">
+          <div class="img-placeholder-large">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>本科申请</h3>
+            <p class="card-desc">面向高中毕业生及在读生，提供韩国本科院校的全程申请服务。我们从院校选择、专业匹配到材料准备、面试辅导，帮助学生在竞争激烈的申请中脱颖而出，进入理想的韩国大学。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">高中毕业生</span>
+                <span class="card-tag">高三在读生</span>
+                <span class="card-tag">高考后留学</span>
+                <span class="card-tag">零韩语基础</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>背景评估与院校定位</li>
+                <li><span class="card-step-num">2</span>语言学习规划（TOPIK/语学院）</li>
+                <li><span class="card-step-num">3</span>申请材料准备与审核</li>
+                <li><span class="card-step-num">4</span>面试辅导与录取跟进</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 研究生申请 -->
+        <div class="detail-card reveal reveal-delay-2">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #1B3560, #2B5EA7, #4B8AD0);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>研究生申请</h3>
+            <p class="card-desc">针对本科毕业生及在职人士，提供韩国硕士项目的精准申请规划。我们深入研究各大学教授的研究方向与招生偏好，帮助申请者匹配最合适的导师和实验室，大幅提升录取成功率。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">本科毕业生</span>
+                <span class="card-tag">在读大四学生</span>
+                <span class="card-tag">跨专业申请</span>
+                <span class="card-tag">职场转型</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>学术背景深度评估</li>
+                <li><span class="card-step-num">2</span>研究方向与导师匹配</li>
+                <li><span class="card-step-num">3</span>研究计划书辅导与润色</li>
+                <li><span class="card-step-num">4</span>套磁邮件与面试全流程</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 博士申请 -->
+        <div class="detail-card reveal reveal-delay-3">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #0F1F3A, #3D7ACC, #6B9FE0);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.34 17.53A8.97 8.97 0 0112 14c2.62 0 4.99 1.12 6.66 3.53"/><path d="M20 14l-1.5 4.5L23 17l-3-3z"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>博士申请</h3>
+            <p class="card-desc">面向硕士毕业生及有明确学术志向的申请者，提供韩国博士及硕博连读项目的高端申请服务。我们帮助申请者深度挖掘学术亮点，精准对接目标教授的研究方向，打造具有竞争力的申请材料。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">硕士毕业生</span>
+                <span class="card-tag">硕博连读</span>
+                <span class="card-tag">科研导向</span>
+                <span class="card-tag">高校教职目标</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>学术成果梳理与定位</li>
+                <li><span class="card-step-num">2</span>教授研究领域深度匹配</li>
+                <li><span class="card-step-num">3</span>研究计划书深度打造</li>
+                <li><span class="card-step-num">4</span>学术面试与奖学金谈判</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 背景提升 ===== -->
+    <div class="service-section reveal">
+      <h2 class="service-section-title">背景提升</h2>
+      <p class="service-section-desc">通过科研实习、语言辅导和文书精修，全方位提升申请竞争力</p>
+      <div class="detail-services-grid">
+
+        <!-- 科研实习推荐 -->
+        <div class="detail-card reveal reveal-delay-4">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #15294D, #1B3560, #4B7ABF);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M9.66 4.67l5.3 5.3a1 1 0 010 1.42l-5.3 5.3"/><path d="M4 12h16"/><rect x="3" y="3" width="18" height="18" rx="3"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>科研实习推荐</h3>
+            <p class="card-desc">依托中韩两地的高校与企业资源网络，为申请者匹配与目标专业高度相关的科研项目或企业实习机会。优质的科研和实习经历不仅丰富简历，更能成为个人陈述中的核心亮点，显著提升名校录取概率。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">研究型硕士申请</span>
+                <span class="card-tag">博士申请者</span>
+                <span class="card-tag">跨专业申请</span>
+                <span class="card-tag">背景薄弱</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>学术兴趣与方向评估</li>
+                <li><span class="card-step-num">2</span>匹配导师/企业资源</li>
+                <li><span class="card-step-num">3</span>科研/实习过程跟进指导</li>
+                <li><span class="card-step-num">4</span>成果提炼与文书转化</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 语言考试辅导 -->
+        <div class="detail-card reveal reveal-delay-5">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #1B3560, #3D7ACC, #5B8FD8);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>语言考试辅导</h3>
+            <p class="card-desc">提供TOPIK（韩国语能力考试）和英语考试（雅思/托福）的一对一辅导服务。我们的语言导师熟悉考试评分标准和出题规律，通过系统化的教学方法和大量真题训练，帮助学生在短期内实现分数突破，满足目标院校的语言要求。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">TOPIK备考</span>
+                <span class="card-tag">雅思/托福冲刺</span>
+                <span class="card-tag">零基础起步</span>
+                <span class="card-tag">短期提分</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>语言水平摸底测试</li>
+                <li><span class="card-step-num">2</span>个性化学习计划制定</li>
+                <li><span class="card-step-num">3</span>听说读写专项突破</li>
+                <li><span class="card-step-num">4</span>模考冲刺与查漏补缺</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 文书润色 -->
+        <div class="detail-card reveal reveal-delay-6">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #0F1F3A, #2B5EA7, #6B9FE0);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>文书润色</h3>
+            <p class="card-desc">由中韩双语母语级别的文书团队操刀，对个人陈述（PS）、研究计划书、推荐信等核心文书进行多轮精修。我们深谙韩国大学教授的阅读偏好和评审标准，确保每份文书既展现申请者的独特个性，又符合韩国学术圈的期待与规范。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">文书需要打磨</span>
+                <span class="card-tag">表达不够地道</span>
+                <span class="card-tag">研究计划薄弱</span>
+                <span class="card-tag">面试准备不足</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>素材收集与亮点挖掘</li>
+                <li><span class="card-step-num">2</span>初稿撰写/中文文稿翻译</li>
+                <li><span class="card-step-num">3</span>韩籍顾问语言润色审校</li>
+                <li><span class="card-step-num">4</span>多轮反馈打磨至定稿</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== 后续支持 ===== -->
+    <div class="service-section reveal">
+      <h2 class="service-section-title">后续支持</h2>
+      <p class="service-section-desc">拿到offer只是开始，我们陪你走完从签证到入学的每一步</p>
+      <div class="detail-services-grid">
+
+        <!-- 签证办理 -->
+        <div class="detail-card reveal reveal-delay-7">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #15294D, #1B3560, #3D7ACC);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="6" y1="8" x2="6" y2="8.01"/><line x1="10" y1="12" x2="18" y2="12"/><line x1="10" y1="16" x2="14" y2="16"/><circle cx="6" cy="16" r="0.5"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>签证办理</h3>
+            <p class="card-desc">韩国留学签证（D-2/D-4）办理全程指导，包括材料清单梳理、申请表填写、面试模拟等。我们与韩国出入境管理部门保持密切沟通，确保签证流程顺畅高效，98%的签证通过率是我们最有力的承诺。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">已获录取者</span>
+                <span class="card-tag">签证首次办理</span>
+                <span class="card-tag">材料复杂</span>
+                <span class="card-tag">时间紧迫</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>签证类型确认与材料清单</li>
+                <li><span class="card-step-num">2</span>材料审核与翻译公证</li>
+                <li><span class="card-step-num">3</span>申请表填写与面试辅导</li>
+                <li><span class="card-step-num">4</span>递签跟踪与出签确认</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 行前指导 -->
+        <div class="detail-card reveal reveal-delay-8">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #0F1F3A, #2B5EA7, #4B8AD0);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>行前指导</h3>
+            <p class="card-desc">出发前的全方位行前培训，涵盖韩国生活常识、文化礼仪、银行开户、手机通信、医疗保险等实用内容。我们还会安排与在韩学长学姐的线上交流，让你提前熟悉当地环境，消除出国的焦虑与不安，自信开启留学生活。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">首次出国</span>
+                <span class="card-tag">韩国生活零经验</span>
+                <span class="card-tag">家长担忧</span>
+                <span class="card-tag">需要行前清单</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>行前物品清单与行李建议</li>
+                <li><span class="card-step-num">2</span>韩国生活常识集中培训</li>
+                <li><span class="card-step-num">3</span>在韩学长学姐经验分享</li>
+                <li><span class="card-step-num">4</span>入境流程与接机安排确认</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 海外住宿安置 -->
+        <div class="detail-card reveal reveal-delay-8">
+          <div class="img-placeholder-large" style="background:linear-gradient(135deg, #1B3560, #3D7ACC, #6B9FE0);">
+            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>图片位置</span>
+          </div>
+          <div class="detail-card-body">
+            <h3>海外住宿安置</h3>
+            <p class="card-desc">提供韩国大学宿舍申请、校外租房（One Room/考试院/Goshiwon）等多种住宿方案的咨询与协助。我们在首尔有本地合作资源，可以帮助学生提前锁定安全、便利、性价比高的住处，真正做到落地无忧，安心入学。</p>
+            <div class="card-meta-section">
+              <div class="card-meta-label">适合人群</div>
+              <div class="card-tags">
+                <span class="card-tag">即将赴韩</span>
+                <span class="card-tag">住宿未定</span>
+                <span class="card-tag">预算有限</span>
+                <span class="card-tag">希望合租</span>
+              </div>
+            </div>
+            <div class="card-meta-section">
+              <div class="card-meta-label">服务流程</div>
+              <ul class="card-steps">
+                <li><span class="card-step-num">1</span>住宿需求与预算沟通</li>
+                <li><span class="card-step-num">2</span>推荐合适区域与房源类型</li>
+                <li><span class="card-step-num">3</span>协助联系房东/中介看房</li>
+                <li><span class="card-step-num">4</span>合同审核与入住办理支持</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA Banner ── -->
+<section class="cta-banner reveal">
+  <div class="cta-banner-content">
+    <h2>准备好开始你的留学之旅了吗？</h2>
+    <p>填写免费评估表，我们将为你量身定制留学规划方案</p>
+    <a href="assessment.html" class="btn-primary">立即免费评估 →</a>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light 北向光</div>
+        <p class="footer-tagline">让我们成为您留学路上最明亮的指引光束。<br>韩国留学，从这里开始。</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="services.html">服务项目</a></li>
+          <li><a href="cases.html">成功案例</a></li>
+          <li><a href="assessment.html">免费评估</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="#">微信：NorthLight_Korea</a></li>
+          <li><a href="#">邮箱：info@northlight.kr</a></li>
+          <li><a href="#">地址：首尔市麻浦区</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 North Light 北向光. All rights reserved.</span>
+      <span>专注韩国留学咨询</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

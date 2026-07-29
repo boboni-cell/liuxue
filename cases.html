@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成功案例 — North Light 北向光 韩国留学咨询</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy-900: #0A1628;
+  --navy-800: #0F1F3A;
+  --navy-700: #15294D;
+  --navy-600: #1B3560;
+  --blue-500: #2B5EA7;
+  --blue-400: #3D7ACC;
+  --blue-300: #6B9FE0;
+  --amber-500: #D4942B;
+  --amber-400: #E8A940;
+  --amber-300: #F0C060;
+  --amber-100: #FDF3E0;
+  --white: #FFFFFF;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1E293B;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  color: var(--gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: var(--white);
+}
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Nav ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 16px 0;
+  transition: all var(--transition);
+  background: transparent;
+}
+.nav.scrolled {
+  background: rgba(10, 22, 40, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 0;
+  box-shadow: 0 1px 20px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+}
+.nav-logo { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; color: var(--white); letter-spacing: -0.02em; display: flex; align-items: center; gap: 8px; }
+.nav-logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--amber-400), var(--blue-400)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+.nav-logo span { font-weight: 300; font-size: 14px; color: var(--gray-300); margin-left: 4px; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { color: var(--gray-200); text-decoration: none; font-size: 14px; font-weight: 500; transition: color var(--transition); }
+.nav-links a:hover { color: var(--amber-400); }
+.nav-links a.active { color: var(--amber-400); font-weight: 600; }
+.nav-cta { padding: 10px 24px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 14px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 16px rgba(212,148,43,0.3); }
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(212,148,43,0.4); }
+.nav-toggle { display: none; background: none; border: none; color: var(--white); cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all var(--transition); border-radius: 1px; }
+.nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+@media (max-width: 900px) {
+  .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--navy-800); flex-direction: column; padding: 80px 32px 32px; gap: 24px; transition: right var(--transition); }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: block; z-index: 101; }
+}
+
+/* ── Section Titles ── */
+.section-label { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber-500); margin-bottom: 12px; }
+.section-title { font-size: 28px; font-weight: 800; color: var(--gray-800); margin-bottom: 8px; letter-spacing: -0.02em; }
+.section-sub { font-size: 16px; color: var(--gray-400); font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 16px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+@media (min-width: 768px) { .section-title { font-size: 36px; } }
+
+/* ── Page Banner ── */
+.page-banner {
+  min-height: 260px;
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 40%, var(--navy-600) 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  padding: 100px 24px 40px;
+}
+.page-banner::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 40%, rgba(232,169,64,0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 60%, rgba(61,122,204,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 50% 80%, rgba(212,148,43,0.05) 0%, transparent 40%);
+}
+.page-banner-content { position: relative; z-index: 1; max-width: 700px; }
+.page-banner h1 { font-size: 36px; font-weight: 800; color: var(--white); line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.02em; }
+.page-banner .banner-sub { font-size: 15px; color: var(--gray-300); font-family: 'Inter', sans-serif; font-weight: 400; margin-bottom: 8px; }
+.page-banner .banner-desc { font-size: 14px; color: var(--gray-400); line-height: 1.6; }
+@media (max-width: 640px) {
+  .page-banner h1 { font-size: 28px; }
+  .page-banner { min-height: 200px; padding: 90px 24px 30px; }
+}
+
+/* ── Sections ── */
+.section { padding: 80px 0; }
+.section-alt { background: var(--gray-50); }
+@media (min-width: 768px) { .section { padding: 120px 0; } }
+
+/* ── Image Placeholder ── */
+.img-placeholder {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600), var(--blue-500));
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.4); min-height: 200px; position: relative; overflow: hidden;
+}
+.img-placeholder::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+.img-placeholder svg { width: 40px; height: 40px; opacity: 0.5; position: relative; z-index: 1; }
+.img-placeholder span { font-size: 12px; margin-top: 8px; position: relative; z-index: 1; }
+
+/* ── Filter Bar ── */
+.filter-section { margin-bottom: 40px; }
+.filter-row { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter-label { font-size: 13px; font-weight: 700; color: var(--gray-600); white-space: nowrap; min-width: 56px; }
+.filter-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 8px 20px; border: 1.5px solid var(--gray-200); border-radius: 100px;
+  font-size: 13px; font-weight: 600; color: var(--gray-500); cursor: pointer;
+  background: var(--white); transition: all var(--transition); font-family: inherit;
+}
+.filter-btn:hover { border-color: var(--gray-300); color: var(--gray-700); }
+.filter-btn.active { background: var(--navy-700); border-color: var(--navy-700); color: var(--white); }
+@media (max-width: 640px) {
+  .filter-row { gap: 8px; }
+  .filter-btn { padding: 6px 14px; font-size: 12px; }
+}
+
+/* ── Success Cases Grid ── */
+.cases-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 640px) { .cases-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .cases-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.case-card {
+  background: var(--white); border-radius: var(--radius-lg); padding: 28px;
+  border: 1px solid var(--gray-200); transition: all var(--transition);
+  position: relative; overflow: hidden;
+}
+.case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+  border-color: transparent;
+}
+.case-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--amber-400), var(--blue-400));
+  opacity: 0; transition: opacity var(--transition);
+}
+.case-card:hover::after { opacity: 1; }
+
+.case-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.case-avatar {
+  width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 24px;
+  position: relative; overflow: hidden;
+}
+.avatar-1 { background: linear-gradient(135deg, #667eea, #764ba2); }
+.avatar-2 { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.avatar-3 { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+.avatar-4 { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+.avatar-5 { background: linear-gradient(135deg, #fa709a, #fee140); }
+.avatar-6 { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+.avatar-7 { background: linear-gradient(135deg, #fccb90, #d57eeb); }
+.avatar-8 { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); }
+.avatar-9 { background: linear-gradient(135deg, #f5576c, #ff6f00); }
+.avatar-10 { background: linear-gradient(135deg, #30cfd0, #330867); }
+.avatar-11 { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+.avatar-12 { background: linear-gradient(135deg, #ff9a9e, #fecfef); }
+
+.case-name { font-weight: 700; font-size: 16px; color: var(--gray-800); }
+.case-bg { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
+
+.case-detail { margin-bottom: 14px; }
+.case-detail-item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--gray-500); margin-bottom: 6px; line-height: 1.5; }
+.case-detail-label { color: var(--gray-400); white-space: nowrap; min-width: 56px; flex-shrink: 0; }
+.case-detail-value { color: var(--gray-600); font-weight: 500; }
+
+.case-result { display: flex; align-items: center; gap: 10px; margin: 14px 0; padding: 12px 14px; background: var(--gray-50); border-radius: var(--radius); }
+.case-result-arrow { color: var(--amber-500); flex-shrink: 0; }
+.case-result-text { font-size: 13px; font-weight: 600; color: var(--navy-700); line-height: 1.4; }
+
+.case-quote {
+  font-size: 13px; color: var(--gray-400); font-style: italic; line-height: 1.6;
+  padding-top: 12px; border-top: 1px solid var(--gray-100); margin-bottom: 12px;
+}
+
+/* ── Story Tags ── */
+.story-tag { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 100px; font-weight: 600; }
+.tag-sky { background: #EEF2FF; color: #4338CA; }
+.tag-top { background: #FEF3C7; color: #B45309; }
+.tag-art { background: #FCE7F3; color: #BE185D; }
+.tag-dual { background: #D1FAE5; color: #047857; }
+
+/* ── No Results ── */
+.no-results {
+  text-align: center; padding: 60px 20px; color: var(--gray-400);
+  grid-column: 1 / -1;
+}
+.no-results svg { margin-bottom: 16px; opacity: 0.4; }
+.no-results p { font-size: 15px; }
+
+/* ── CTA Banner ── */
+.cta-banner {
+  background: linear-gradient(135deg, var(--navy-700), var(--navy-600));
+  border-radius: var(--radius-lg); padding: 48px 32px; text-align: center;
+  color: var(--white); margin-top: 64px;
+}
+.cta-banner h3 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.cta-banner p { font-size: 15px; color: var(--gray-300); margin-bottom: 24px; }
+.btn-primary-inline { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; background: linear-gradient(135deg, var(--amber-500), var(--amber-400)); color: var(--navy-900); border-radius: 100px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all var(--transition); box-shadow: 0 4px 20px rgba(212,148,43,0.3); }
+.btn-primary-inline:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,148,43,0.4); }
+
+/* ── Footer ── */
+.footer { background: var(--navy-900); color: var(--gray-300); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-bottom: 48px; }
+@media (min-width: 640px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+.footer-brand { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+.footer-tagline { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+.footer h4 { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: var(--gray-400); text-decoration: none; font-size: 13px; transition: color var(--transition); }
+.footer ul a:hover { color: var(--amber-400); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-500); flex-wrap: wrap; gap: 12px; }
+
+/* ── Scroll Reveal ── */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="nav scrolled" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">✦</div>
+      North Light<span>北向光</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" data-nav>首页</a></li>
+      <li><a href="services.html" data-nav>服务项目</a></li>
+      <li><a href="cases.html" class="active" data-nav>成功案例</a></li>
+      <li><a href="resources.html" data-nav>资讯中心</a></li>
+      <li><a href="about.html" data-nav>关于我们</a></li>
+      <li><a href="assessment.html" class="nav-cta">免费评估 →</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── Page Banner ── -->
+<section class="page-banner">
+  <div class="page-banner-content">
+    <h1>成功案例</h1>
+    <p class="banner-sub">Success Stories</p>
+    <p class="banner-desc">每一个案例背后，都是一个被点亮的留学梦想</p>
+  </div>
+</section>
+
+<!-- ── Cases Section ── -->
+<section class="section section-alt">
+  <div class="container">
+
+    <!-- Filter Bar -->
+    <div class="filter-section reveal">
+      <div class="filter-row">
+        <span class="filter-label">按学历</span>
+        <div class="filter-buttons" id="degreeFilters">
+          <button class="filter-btn active" data-degree="all">全部</button>
+          <button class="filter-btn" data-degree="undergraduate">本科</button>
+          <button class="filter-btn" data-degree="graduate">研究生</button>
+          <button class="filter-btn" data-degree="phd">博士</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">按院校</span>
+        <div class="filter-buttons" id="schoolFilters">
+          <button class="filter-btn active" data-school="all">全部</button>
+          <button class="filter-btn" data-school="sky">SKY</button>
+          <button class="filter-btn" data-school="seoul-top">首尔名校</button>
+          <button class="filter-btn" data-school="local">地方国立</button>
+          <button class="filter-btn" data-school="art">艺术类</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cases Grid -->
+    <div class="cases-grid" id="casesGrid"></div>
+
+    <!-- CTA Banner -->
+    <div class="cta-banner reveal">
+      <h3>也想成为下一个成功案例？</h3>
+      <p>留下你的信息，我们为你定制专属留学方案</p>
+      <a href="assessment.html" class="btn-primary-inline">免费评估 →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">North Light 北向光</div>
+        <p class="footer-tagline">让我们成为您留学路上最明亮的指引光束。<br>韩国留学，从这里开始。</p>
+      </div>
+      <div>
+        <h4>快速链接</h4>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="services.html">服务项目</a></li>
+          <li><a href="cases.html">成功案例</a></li>
+          <li><a href="assessment.html">免费评估</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>联系方式</h4>
+        <ul>
+          <li><a href="#">微信：NorthLight_Korea</a></li>
+          <li><a href="#">邮箱：info@northlight.kr</a></li>
+          <li><a href="#">地址：首尔市麻浦区</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 North Light 北向光. All rights reserved.</span>
+      <span>专注韩国留学咨询</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── Nav scroll effect ── */
+const nav = document.getElementById('nav');
+nav.classList.add('scrolled');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ── Mobile nav toggle ── */
+const toggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+  toggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+document.querySelectorAll('[data-nav]').forEach(a => {
+  a.addEventListener('click', () => {
+    toggle.classList.remove('open');
+    navLinks.classList.remove('open');
+  });
+});
+
+/* ── Scroll reveal ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ── Cases Data ── */
+const CASES = [
+  {
+    id: 1,
+    name: '张同学',
+    avatarClass: 'avatar-1',
+    bg: '国内二本 · GPA 3.2 · TOPIK 4级',
+    school: '高丽大学',
+    major: '传媒学硕士',
+    tag: 'sky',
+    tagLabel: 'SKY录取',
+    degree: 'graduate',
+    schoolType: 'sky',
+    quote: '顾问帮我精准定位了最适合的教授方向，文书修改了五稿才满意，拿到录取通知书的那一刻觉得一切都值了。'
+  },
+  {
+    id: 2,
+    name: '李同学',
+    avatarClass: 'avatar-2',
+    bg: '普通高中 · GPA 3.6 · TOPIK 5级',
+    school: '成均馆大学',
+    major: '经营学',
+    tag: 'top',
+    tagLabel: '本科直录',
+    degree: 'undergraduate',
+    schoolType: 'seoul-top',
+    quote: '高中就开始规划了，顾问帮我选了三所学校保底、冲刺搭配，最后顺利拿到最想去的成均馆大学。'
+  },
+  {
+    id: 3,
+    name: '王同学',
+    avatarClass: 'avatar-3',
+    bg: '大专毕业 · GPA 3.0 · 零韩语',
+    school: '汉阳大学',
+    major: '语学院+本科',
+    tag: 'dual',
+    tagLabel: '双录取',
+    degree: 'undergraduate',
+    schoolType: 'seoul-top',
+    quote: '以为专科毕业没希望了，顾问说语学院过渡是一条很多人走的路，现在语学院在读，已经拿到了本科offer。'
+  },
+  {
+    id: 4,
+    name: '陈同学',
+    avatarClass: 'avatar-4',
+    bg: '211本科 · GPA 3.8 · 雅思7.0',
+    school: '首尔大学',
+    major: '计算机工学',
+    tag: 'sky',
+    tagLabel: 'SKY录取',
+    degree: 'graduate',
+    schoolType: 'sky',
+    quote: '首尔大工科竞争太激烈了，还好顾问推荐的科研项目让我简历加分很多，面试问题也提前演练了。'
+  },
+  {
+    id: 5,
+    name: '赵同学',
+    avatarClass: 'avatar-5',
+    bg: '普通本科 · GPA 3.5 · TOPIK 3级',
+    school: '弘益大学',
+    major: '视觉设计',
+    tag: 'art',
+    tagLabel: '艺术名校',
+    degree: 'undergraduate',
+    schoolType: 'art',
+    quote: '作品集辅导的老师就是弘益毕业的，给了我很多韩国教授偏好的方向建议，太有用了。'
+  },
+  {
+    id: 6,
+    name: '刘同学',
+    avatarClass: 'avatar-6',
+    bg: '二本院校 · GPA 3.1 · TOPIK 4级',
+    school: '庆熙大学',
+    major: '酒店管理',
+    tag: 'top',
+    tagLabel: '名校录取',
+    degree: 'graduate',
+    schoolType: 'seoul-top',
+    quote: '酒店管理是庆熙的王牌专业，顾问详细分析了课程设置和就业前景，帮我找到了最适合的方向。'
+  },
+  {
+    id: 7,
+    name: '孙同学',
+    avatarClass: 'avatar-7',
+    bg: '985本科 · GPA 3.9 · TOPIK 6级',
+    school: '延世大学',
+    major: '经营学MBA',
+    tag: 'sky',
+    tagLabel: 'SKY录取',
+    degree: 'graduate',
+    schoolType: 'sky',
+    quote: '985的背景加上顾问的精准定位，让我在众多申请者中脱颖而出，延世的MBA项目真的非常棒。'
+  },
+  {
+    id: 8,
+    name: '周同学',
+    avatarClass: 'avatar-8',
+    bg: '普通本科 · GPA 2.9 · TOPIK 2级',
+    school: '釜山大学',
+    major: '国际贸易',
+    tag: 'dual',
+    tagLabel: '地方国立',
+    degree: 'undergraduate',
+    schoolType: 'local',
+    quote: '虽然条件一般，但顾问帮我找到了门槛合适的国立大学，学费便宜还有奖学金，性价比超高。'
+  },
+  {
+    id: 9,
+    name: '吴同学',
+    avatarClass: 'avatar-9',
+    bg: '211硕士 · GPA 3.6 · 雅思6.5',
+    school: 'KAIST',
+    major: '电子工程博士',
+    tag: 'sky',
+    tagLabel: 'SKY录取',
+    degree: 'phd',
+    schoolType: 'sky',
+    quote: '从硕士到博士，顾问帮我联系了KAIST的导师，研究计划书修改了好几轮，最终顺利拿到offer。'
+  },
+  {
+    id: 10,
+    name: '郑同学',
+    avatarClass: 'avatar-10',
+    bg: '普通高中 · GPA 3.3 · 零韩语',
+    school: '中央大学',
+    major: '语学院+影视制作',
+    tag: 'art',
+    tagLabel: '艺术名校',
+    degree: 'undergraduate',
+    schoolType: 'art',
+    quote: '零基础也能去韩国学影视！顾问推荐的语学院加专业课程路径，让我一步一步接近自己的梦想。'
+  },
+  {
+    id: 11,
+    name: '钱同学',
+    avatarClass: 'avatar-11',
+    bg: '二本院校 · GPA 3.4 · TOPIK 4级',
+    school: '成均馆大学',
+    major: '数据科学',
+    tag: 'top',
+    tagLabel: '名校录取',
+    degree: 'graduate',
+    schoolType: 'seoul-top',
+    quote: '数据科学是新兴热门专业，顾问详细分析了成均馆大学的课程特色和就业方向，非常专业。'
+  },
+  {
+    id: 12,
+    name: '马同学',
+    avatarClass: 'avatar-12',
+    bg: '普通本科 · GPA 2.8 · TOPIK 1级',
+    school: '全南大学',
+    major: '韩国语教育',
+    tag: 'dual',
+    tagLabel: '地方国立',
+    degree: 'undergraduate',
+    schoolType: 'local',
+    quote: '语言成绩不理想但顾问说地方国立大学有更适合我的项目，韩国语教育正好契合我的职业规划。'
+  }
+];
+
+/* ── Filter State ── */
+let activeDegree = 'all';
+let activeSchool = 'all';
+
+/* ── Render Cases ── */
+function renderCases() {
+  const grid = document.getElementById('casesGrid');
+
+  const filtered = CASES.filter(c => {
+    const degreeMatch = activeDegree === 'all' || c.degree === activeDegree;
+    const schoolMatch = activeSchool === 'all' || c.schoolType === activeSchool;
+    return degreeMatch && schoolMatch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="no-results">
+        <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <p>暂无匹配的案例，请尝试其他筛选条件</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map((c, i) => {
+    const delayClass = 'reveal-delay-' + (Math.min(i, 6));
+    return `
+      <div class="case-card reveal ${delayClass}">
+        <div class="case-header">
+          <div class="case-avatar ${c.avatarClass}">${c.name[0]}</div>
+          <div>
+            <div class="case-name">${c.name}</div>
+            <div class="case-bg">${c.bg}</div>
+          </div>
+        </div>
+        <div class="case-result">
+          <svg class="case-result-arrow" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+          <div class="case-result-text">${c.school} ${c.major}</div>
+        </div>
+        <span class="story-tag tag-${c.tag}">${c.tagLabel}</span>
+        <div class="case-quote">"${c.quote}"</div>
+      </div>
+    `;
+  }).join('');
+
+  // Re-observe newly added reveal elements
+  document.querySelectorAll('#casesGrid .reveal').forEach(el => observer.observe(el));
+}
+
+/* ── Filter Handlers ── */
+function setFilter(group, value) {
+  if (group === 'degree') {
+    activeDegree = value;
+    document.querySelectorAll('#degreeFilters .filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.degree === value);
+    });
+  } else if (group === 'school') {
+    activeSchool = value;
+    document.querySelectorAll('#schoolFilters .filter-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.school === value);
+    });
+  }
+  renderCases();
+}
+
+document.getElementById('degreeFilters').addEventListener('click', (e) => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  setFilter('degree', e.target.dataset.degree);
+});
+
+document.getElementById('schoolFilters').addEventListener('click', (e) => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  setFilter('school', e.target.dataset.school);
+});
+
+/* ── Initial Render ── */
+renderCases();
+</script>
+</body>
+</html>
