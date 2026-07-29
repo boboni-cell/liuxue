@@ -191,7 +191,7 @@ function StatCard({ title, value, icon, color }) {
 }
 
 /* ──────────────────────────── DASHBOARD ──────────────────────────── */
-function Dashboard({ customers }) {
+function Dashboard({ customers, onRefresh }) {
   const stats = useMemo(() => {
     const today = new Date().toISOString().slice(0, 10);
     const todayNew = customers.filter(c => c.submitTime.slice(0, 10) === today).length;
@@ -213,7 +213,13 @@ function Dashboard({ customers }) {
 
   return (
     <div className="animate-fadeIn">
-      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6">数据概览</h2>
+      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6 flex items-center justify-between">
+        <span>数据概览</span>
+        <button onClick={onRefresh} className="text-xs font-normal text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          刷新数据
+        </button>
+      </h2>
 
       {/* Stat cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
@@ -267,7 +273,7 @@ function Dashboard({ customers }) {
 }
 
 /* ──────────────────────────── CUSTOMER LIST ──────────────────────────── */
-function CustomerList({ customers, onUpdateCustomer }) {
+function CustomerList({ customers, onUpdateCustomer, onRefresh }) {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [expandedId, setExpandedId] = useState(null);
@@ -303,7 +309,13 @@ function CustomerList({ customers, onUpdateCustomer }) {
 
   return (
     <div className="animate-fadeIn">
-      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6">客户管理</h2>
+      <h2 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 sm:mb-6 flex items-center justify-between">
+        <span>客户管理</span>
+        <button onClick={onRefresh} className="text-xs font-normal text-indigo-500 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1">
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          刷新数据
+        </button>
+      </h2>
 
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-3 mb-4">
@@ -529,6 +541,13 @@ function Sidebar({ currentPage, onNavigate, onLogout, mobileOpen, onCloseMobile 
             {item.label}
           </button>
         ))}
+        <a
+          href="assessment.html"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 text-slate-400 hover:text-white hover:bg-slate-700/50 no-underline"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          查看问卷页
+        </a>
       </nav>
 
       {/* User / Logout */}
@@ -571,7 +590,7 @@ function Sidebar({ currentPage, onNavigate, onLogout, mobileOpen, onCloseMobile 
 }
 
 /* ──────────────────────────── MAIN LAYOUT ──────────────────────────── */
-function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer }) {
+function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCustomer, onRefresh }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
@@ -591,13 +610,16 @@ function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCust
           <button onClick={() => setMobileOpen(true)} className="text-slate-500 hover:text-slate-700 transition-colors p-1">
             <Icon.Menu />
           </button>
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center">
-              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
-              </svg>
+          <div className="flex items-center gap-3">
+            <a href="assessment.html" className="text-xs text-indigo-500 hover:text-indigo-700 transition-colors no-underline font-medium">查看问卷页</a>
+            <div className="flex items-center gap-2">
+              <div className="w-7 h-7 bg-indigo-500 rounded-lg flex items-center justify-center">
+                <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5"/>
+                </svg>
+              </div>
+              <span className="text-sm font-bold text-slate-700">留学管理</span>
             </div>
-            <span className="text-sm font-bold text-slate-700">留学管理</span>
           </div>
           <button onClick={onLogout} className="text-slate-400 hover:text-red-500 transition-colors p-1">
             <Icon.Logout />
@@ -606,8 +628,8 @@ function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCust
 
         {/* Page content */}
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-auto">
-          {currentPage === 'dashboard' && <Dashboard customers={customers} />}
-          {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} />}
+          {currentPage === 'dashboard' && <Dashboard customers={customers} onRefresh={onRefresh} />}
+          {currentPage === 'customers' && <CustomerList customers={customers} onUpdateCustomer={onUpdateCustomer} onRefresh={onRefresh} />}
         </main>
       </div>
     </div>
@@ -615,13 +637,34 @@ function MainLayout({ currentPage, onNavigate, onLogout, customers, onUpdateCust
 }
 
 /* ──────────────────────────── APP ROOT ──────────────────────────── */
+function loadFromStorage() {
+  const stored = localStorage.getItem('clients');
+  if (stored) {
+    try { return JSON.parse(stored); } catch(e) { return null; }
+  }
+  return null;
+}
+
+function saveToStorage(customers) {
+  localStorage.setItem('clients', JSON.stringify(customers));
+}
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPage, setCurrentPage] = useState('dashboard');
-  const [customers, setCustomers] = useState(MOCK_CUSTOMERS);
+  const [customers, setCustomers] = useState(() => loadFromStorage() || MOCK_CUSTOMERS);
 
   const updateCustomer = useCallback((id, updates) => {
-    setCustomers(prev => prev.map(c => c.id === id ? { ...c, ...updates } : c));
+    setCustomers(prev => {
+      const next = prev.map(c => c.id === id ? { ...c, ...updates } : c);
+      saveToStorage(next);
+      return next;
+    });
+  }, []);
+
+  const refreshData = useCallback(() => {
+    const stored = loadFromStorage();
+    setCustomers(stored || MOCK_CUSTOMERS);
   }, []);
 
   if (!isLoggedIn) {
@@ -635,6 +678,7 @@ function App() {
       onLogout={() => setIsLoggedIn(false)}
       customers={customers}
       onUpdateCustomer={updateCustomer}
+      onRefresh={refreshData}
     />
   );
 }

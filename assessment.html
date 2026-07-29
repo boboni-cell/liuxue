@@ -856,6 +856,7 @@ const CASES = [
 function Hero({ onStart }) {
   return (
     <div className="hero">
+      <a href="admin.html" style={{position:'absolute',top:'16px',right:'20px',fontSize:'12px',color:'var(--text-light)',textDecoration:'none',opacity:0.5,transition:'opacity 0.2s'}} onMouseEnter={e=>e.target.style.opacity=1} onMouseLeave={e=>e.target.style.opacity=0.5}>管理后台</a>
       <div className="hero-badge">
         韩国留学 · 免费评估
       </div>
@@ -1101,9 +1102,33 @@ function App() {
       return;
     }
 
-    const allData = { ...answers, contact };
+    const now = new Date();
+    const submitTime = `${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+
+    const client = {
+      id: Date.now(),
+      name: contact.name.trim(),
+      wechat: contact.wechat.trim(),
+      phone: contact.phone.trim(),
+      education: answers.education || '',
+      targetDegree: answers.targetDegree || '',
+      koreanLevel: answers.koreanLevel || '',
+      englishLevel: answers.englishLevel || '',
+      targetSchools: answers.targetSchools || [],
+      enrollmentTime: answers.enrollmentTime || '',
+      concerns: answers.concerns || [],
+      submitTime: submitTime,
+      status: 'new',
+      notes: [],
+    };
+
+    const existing = JSON.parse(localStorage.getItem('clients') || '[]');
+    existing.push(client);
+    localStorage.setItem('clients', JSON.stringify(existing));
+
     console.log('=== 留学评估问卷提交数据 ===');
-    console.log(JSON.stringify(allData, null, 2));
+    console.log(JSON.stringify(client, null, 2));
+    console.log('当前总客户数:', existing.length);
     console.log('==============================');
 
     setPhase('success');
